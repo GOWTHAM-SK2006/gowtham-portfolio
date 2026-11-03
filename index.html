@@ -97,34 +97,88 @@
         radial-gradient(circle, rgba(74, 222, 128, 0.07) 1px, transparent 1px);
     }
 
-    /* Custom Cursor */
-    #custom-cursor-dot, #custom-cursor-ring {
-      pointer-events: none;
+    /* Custom Cursor (Desktops only, disabled on touch/coarse devices) */
+    @media (pointer: fine) {
+      #custom-cursor-dot, #custom-cursor-ring {
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.2s ease;
+      }
+      #custom-cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #4ade80;
+        box-shadow: 0 0 12px #4ade80, 0 0 20px #22c55e;
+      }
+      #custom-cursor-ring {
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid rgba(74, 222, 128, 0.5);
+        transition: width 0.25s ease-out, height 0.25s ease-out, border-color 0.25s ease-out, background-color 0.25s ease-out, transform 0.08s linear;
+      }
+      .cursor-hover #custom-cursor-ring {
+        width: 54px;
+        height: 54px;
+        border-color: #4ade80;
+        background-color: rgba(74, 222, 128, 0.1);
+      }
+    }
+    @media (pointer: coarse) {
+      #custom-cursor-dot, #custom-cursor-ring {
+        display: none !important;
+      }
+    }
+
+    /* Touch Glow & Ripple for Mobile/Tablet */
+    #touch-glow {
       position: fixed;
       top: 0;
       left: 0;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 9998;
+      background: radial-gradient(circle, rgba(74, 222, 128, 0.45) 0%, rgba(74, 222, 128, 0.18) 45%, transparent 75%);
+      filter: blur(6px);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      transform: translate3d(-9999px, -9999px, 0);
+      will-change: transform, opacity;
     }
-    #custom-cursor-dot {
-      width: 8px;
-      height: 8px;
-      background-color: #4ade80;
-      box-shadow: 0 0 12px #4ade80, 0 0 20px #22c55e;
+    .touch-ripple {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      border: 1.5px solid rgba(74, 222, 128, 0.65);
+      background: rgba(74, 222, 128, 0.15);
+      animation: touchRippleAnim 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      will-change: transform, opacity;
     }
-    #custom-cursor-ring {
-      width: 36px;
-      height: 36px;
-      border: 1.5px solid rgba(74, 222, 128, 0.5);
-      transition: width 0.25s ease-out, height 0.25s ease-out, border-color 0.25s ease-out, background-color 0.25s ease-out, transform 0.08s linear;
+    @keyframes touchRippleAnim {
+      0% {
+        transform: translate3d(var(--tx), var(--ty), 0) translate(-50%, -50%) scale(0.4);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translate3d(var(--tx), var(--ty), 0) translate(-50%, -50%) scale(2.2);
+        opacity: 0;
+      }
     }
-    .cursor-hover #custom-cursor-ring {
-      width: 54px;
-      height: 54px;
-      border-color: #4ade80;
-      background-color: rgba(74, 222, 128, 0.1);
+    @media (prefers-reduced-motion: reduce) {
+      #touch-glow, .touch-ripple {
+        display: none !important;
+      }
     }
 
     /* Tilted Card 3D Depth */
@@ -224,9 +278,12 @@
 </head>
 <body class="bg-brand-dark text-gray-200 font-inter antialiased relative min-h-screen selection:bg-brand-green selection:text-brand-dark overflow-x-hidden">
 
-  <!-- Custom Glowing Cursor -->
+  <!-- Custom Glowing Cursor (Desktop) -->
   <div id="custom-cursor-dot" class="hidden md:block"></div>
   <div id="custom-cursor-ring" class="hidden md:block"></div>
+
+  <!-- Touch Glow Element (Mobile & Tablet) -->
+  <div id="touch-glow"></div>
 
   <!-- Top Scroll Progress Bar -->
   <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-green-500 via-emerald-400 to-lime-300 z-50 transition-all duration-75 w-0"></div>
@@ -1982,47 +2039,105 @@
       });
     }
 
-    // 2. Custom Glowing Mouse Cursor with Trailing Ring
+    // 2. Custom Glowing Mouse Cursor (Desktop) & Touch Glow/Ripple (Mobile/Tablet)
     const cursorDot = document.getElementById('custom-cursor-dot');
     const cursorRing = document.getElementById('custom-cursor-ring');
+    const touchGlow = document.getElementById('touch-glow');
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia('(pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
+    if (!isTouchDevice) {
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
 
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (cursorDot) {
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
-      }
-    });
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (cursorDot) {
+          cursorDot.style.left = `${mouseX}px`;
+          cursorDot.style.top = `${mouseY}px`;
+        }
+      });
 
-    function animateCursorRing() {
-      // Smooth interpolation (lerp)
-      ringX += (mouseX - ringX) * 0.16;
-      ringY += (mouseY - ringY) * 0.16;
+      function animateCursorRing() {
+        ringX += (mouseX - ringX) * 0.16;
+        ringY += (mouseY - ringY) * 0.16;
 
-      if (cursorRing) {
-        cursorRing.style.left = `${ringX}px`;
-        cursorRing.style.top = `${ringY}px`;
+        if (cursorRing) {
+          cursorRing.style.left = `${ringX}px`;
+          cursorRing.style.top = `${ringY}px`;
+        }
+        requestAnimationFrame(animateCursorRing);
       }
       requestAnimationFrame(animateCursorRing);
-    }
-    requestAnimationFrame(animateCursorRing);
 
-    // Expand cursor ring when hovering over clickable elements
-    const hoverTargets = document.querySelectorAll('a, button, input, textarea, .glass-card');
-    hoverTargets.forEach((target) => {
-      target.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-hover');
+      const hoverTargets = document.querySelectorAll('a, button, input, textarea, .glass-card, .service-card, .skill-card');
+      hoverTargets.forEach((target) => {
+        target.addEventListener('mouseenter', () => {
+          document.body.classList.add('cursor-hover');
+        });
+        target.addEventListener('mouseleave', () => {
+          document.body.classList.remove('cursor-hover');
+        });
       });
-      target.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-hover');
-      });
-    });
+    } else if (touchGlow && !prefersReducedMotion) {
+      let touchX = 0;
+      let touchY = 0;
+      let isTicking = false;
+
+      function updateGlowPosition() {
+        touchGlow.style.transform = `translate3d(${touchX - 45}px, ${touchY - 45}px, 0)`;
+        isTicking = false;
+      }
+
+      function requestGlowUpdate() {
+        if (!isTicking) {
+          requestAnimationFrame(updateGlowPosition);
+          isTicking = true;
+        }
+      }
+
+      // Touch Start
+      window.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+          touchX = e.touches[0].clientX;
+          touchY = e.touches[0].clientY;
+          updateGlowPosition();
+          touchGlow.style.opacity = '1';
+
+          // Create expanding soft ripple ring
+          const ripple = document.createElement('div');
+          ripple.className = 'touch-ripple';
+          ripple.style.setProperty('--tx', `${touchX}px`);
+          ripple.style.setProperty('--ty', `${touchY}px`);
+          document.body.appendChild(ripple);
+
+          setTimeout(() => {
+            if (ripple && ripple.parentNode) {
+              ripple.parentNode.removeChild(ripple);
+            }
+          }, 600);
+        }
+      }, { passive: true });
+
+      // Touch Move
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches[0]) {
+          touchX = e.touches[0].clientX;
+          touchY = e.touches[0].clientY;
+          requestGlowUpdate();
+        }
+      }, { passive: true });
+
+      // Touch End & Cancel
+      const fadeOutTouchGlow = () => {
+        touchGlow.style.opacity = '0';
+      };
+      window.addEventListener('touchend', fadeOutTouchGlow, { passive: true });
+      window.addEventListener('touchcancel', fadeOutTouchGlow, { passive: true });
+    }
 
     // 3. Scroll Progress Indicator
     const scrollProgressBar = document.getElementById('scroll-progress');
