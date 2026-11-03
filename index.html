@@ -178,6 +178,24 @@
       transform: translateY(-4px);
     }
 
+    /* Dedicated Service Card Hover effect with reduced motion support */
+    .service-card {
+      background: rgba(10, 16, 10, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(74, 222, 128, 0.14);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.35s ease, 
+                  box-shadow 0.35s ease;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .service-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(74, 222, 128, 0.55);
+        box-shadow: 0 16px 40px -10px rgba(34, 197, 94, 0.32), 0 0 20px rgba(74, 222, 128, 0.2);
+      }
+    }
+
     /* Fade-in scroll observer class */
     .fade-up {
       opacity: 0;
@@ -663,196 +681,164 @@
         <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
           What I <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Do</span>
         </h2>
-        <p class="text-gray-400 max-w-xl text-sm sm:text-base">
-          Engineering reliable systems from high-throughput backend APIs to responsive frontends and real-time streams.
+        <p class="text-gray-400 max-w-2xl text-sm sm:text-base leading-relaxed">
+          Backend systems, real-time apps and ML-powered APIs, built with Java Spring Boot and Python FastAPI.
         </p>
         <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
       </div>
 
-      <!-- Services Grid -->
+      <!-- 6 Services Grid (3x2 Desktop, 2-col Tablet, 1-col Mobile) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <!-- Service 1 -->
-        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
-          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+        <!-- Service 01 -->
+        <div class="fade-up service-card p-7 sm:p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between h-full">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all pointer-events-none"></div>
           <div>
             <div class="flex items-center justify-between mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
+              <div class="w-13 h-13 p-3 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.35)] transition-transform duration-300">
                 <i class="fa-solid fa-server text-xl"></i>
               </div>
               <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">01</span>
             </div>
-            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
-              Backend &amp; REST API Development
+            <h3 class="font-syne font-bold text-xl text-white mb-2.5 group-hover:text-green-400 transition-colors">
+              Backend &amp; REST APIs
             </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Designing production-ready, layered RESTful APIs using Java and Spring Boot. Equipped with Spring Security, JWT role-based authorization, and clean domain design.
+            <p class="text-gray-400 text-sm leading-relaxed line-clamp-2">
+              Layered REST APIs with Spring Boot and FastAPI, secured with JWT and role-based access.
             </p>
           </div>
-          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
-            <span>Spring Boot • JWT</span>
-            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          <div class="pt-5 mt-6 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono-code text-green-400">
+            <span>Spring Boot</span>
+            <span class="text-white/20">•</span>
+            <span>FastAPI</span>
+            <span class="text-white/20">•</span>
+            <span>JWT</span>
           </div>
         </div>
 
-        <!-- Service 2 -->
-        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
-          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+        <!-- Service 02 -->
+        <div class="fade-up service-card p-7 sm:p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between h-full">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all pointer-events-none"></div>
           <div>
             <div class="flex items-center justify-between mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
+              <div class="w-13 h-13 p-3 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.35)] transition-transform duration-300">
                 <i class="fa-solid fa-satellite-dish text-xl"></i>
               </div>
               <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">02</span>
             </div>
-            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
+            <h3 class="font-syne font-bold text-xl text-white mb-2.5 group-hover:text-green-400 transition-colors">
               Real-Time Systems
             </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Architecting full-duplex communication channels with WebSockets. Proven experience building live vehicle tracking systems and competitive live coding battles.
+            <p class="text-gray-400 text-sm leading-relaxed line-clamp-2">
+              Live tracking and 1v1 coding battles using WebSockets and real-time updates.
             </p>
           </div>
-          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
-            <span>WebSockets • Live Sync</span>
-            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          <div class="pt-5 mt-6 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono-code text-green-400">
+            <span>WebSockets</span>
+            <span class="text-white/20">•</span>
+            <span>Live Sync</span>
           </div>
         </div>
 
-        <!-- Service 3 -->
-        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
-          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+        <!-- Service 03 -->
+        <div class="fade-up service-card p-7 sm:p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between h-full">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all pointer-events-none"></div>
           <div>
             <div class="flex items-center justify-between mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
+              <div class="w-13 h-13 p-3 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.35)] transition-transform duration-300">
                 <i class="fa-solid fa-database text-xl"></i>
               </div>
               <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">03</span>
             </div>
-            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
-              Database Design &amp; Optimization
+            <h3 class="font-syne font-bold text-xl text-white mb-2.5 group-hover:text-green-400 transition-colors">
+              Database Design
             </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Constructing normalized relational schemas in PostgreSQL and MySQL. Proficient in indexing, join optimization, ACID transactions, and JPA performance tuning.
+            <p class="text-gray-400 text-sm leading-relaxed line-clamp-2">
+              Relational schemas, indexing and query optimization in PostgreSQL and MySQL.
             </p>
           </div>
-          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
-            <span>PostgreSQL • MySQL</span>
-            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          <div class="pt-5 mt-6 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono-code text-green-400">
+            <span>PostgreSQL</span>
+            <span class="text-white/20">•</span>
+            <span>MySQL</span>
           </div>
         </div>
 
-        <!-- Service 4 -->
-        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
-          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+        <!-- Service 04 -->
+        <div class="fade-up service-card p-7 sm:p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between h-full">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all pointer-events-none"></div>
           <div>
             <div class="flex items-center justify-between mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
+              <div class="w-13 h-13 p-3 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.35)] transition-transform duration-300">
                 <i class="fa-solid fa-laptop-code text-xl"></i>
               </div>
               <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">04</span>
             </div>
-            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
+            <h3 class="font-syne font-bold text-xl text-white mb-2.5 group-hover:text-green-400 transition-colors">
               Full-Stack Web Apps
             </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Delivering end-to-end applications combining rock-solid Java backends with modern, responsive frontends styled with Tailwind CSS, HTML5, and JavaScript.
+            <p class="text-gray-400 text-sm leading-relaxed line-clamp-2">
+              End-to-end apps with Java backends and responsive Tailwind CSS frontends.
             </p>
           </div>
-          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
-            <span>Tailwind • JS • Spring</span>
-            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          <div class="pt-5 mt-6 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono-code text-green-400">
+            <span>Tailwind</span>
+            <span class="text-white/20">•</span>
+            <span>JavaScript</span>
+            <span class="text-white/20">•</span>
+            <span>Spring</span>
           </div>
         </div>
 
-        <!-- Service 5: Machine Learning Model Development -->
-        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
-          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+        <!-- Service 05 -->
+        <div class="fade-up service-card p-7 sm:p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between h-full">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all pointer-events-none"></div>
           <div>
             <div class="flex items-center justify-between mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
-                <i class="fa-solid fa-chart-line text-xl"></i>
+              <div class="w-13 h-13 p-3 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.35)] transition-transform duration-300">
+                <i class="fa-solid fa-brain text-xl"></i>
               </div>
               <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">05</span>
             </div>
-            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
-              Machine Learning Model Development
+            <h3 class="font-syne font-bold text-xl text-white mb-2.5 group-hover:text-green-400 transition-colors">
+              Machine Learning &amp; Deep Learning
             </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Developing predictive algorithms, data preprocessing pipelines, and model evaluation routines using scikit-learn, Pandas, and NumPy for intelligent decision-making.
+            <p class="text-gray-400 text-sm leading-relaxed line-clamp-2">
+              Building and training ML and DL models with scikit-learn, TensorFlow and PyTorch.
             </p>
           </div>
-          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
-            <span>scikit-learn • Pandas</span>
-            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          <div class="pt-5 mt-6 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono-code text-green-400">
+            <span>scikit-learn</span>
+            <span class="text-white/20">•</span>
+            <span>TensorFlow</span>
+            <span class="text-white/20">•</span>
+            <span>PyTorch</span>
           </div>
         </div>
 
-        <!-- Service 6: Deep Learning Model Development -->
-        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
-          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+        <!-- Service 06 -->
+        <div class="fade-up service-card p-7 sm:p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between h-full">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all pointer-events-none"></div>
           <div>
             <div class="flex items-center justify-between mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
-                <i class="fa-solid fa-brain text-xl"></i>
+              <div class="w-13 h-13 p-3 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.35)] transition-transform duration-300">
+                <i class="fa-solid fa-cubes text-xl"></i>
               </div>
               <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">06</span>
             </div>
-            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
-              Deep Learning Model Development
+            <h3 class="font-syne font-bold text-xl text-white mb-2.5 group-hover:text-green-400 transition-colors">
+              Microservices &amp; Model Deployment
             </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Designing and training neural network architectures, CNNs, and deep representations with TensorFlow, Keras, and PyTorch for complex pattern recognition tasks.
+            <p class="text-gray-400 text-sm leading-relaxed line-clamp-2">
+              Independent Spring Boot and FastAPI services on multiple servers, with ML models served as APIs.
             </p>
           </div>
-          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
-            <span>TensorFlow • PyTorch</span>
-            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
-          </div>
-        </div>
-
-        <!-- Service 7: ML Model Deployment as APIs (FastAPI) -->
-        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
-          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
-          <div>
-            <div class="flex items-center justify-between mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
-                <i class="fa-solid fa-cloud-arrow-up text-xl"></i>
-              </div>
-              <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">07</span>
-            </div>
-            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
-              ML Model Deployment as APIs (FastAPI)
-            </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Serving production machine learning and deep learning models through high-performance, asynchronous REST endpoints with FastAPI, Uvicorn, and Pydantic validation.
-            </p>
-          </div>
-          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
-            <span>FastAPI • Uvicorn • ML Serving</span>
-            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
-          </div>
-        </div>
-
-        <!-- Service 8: Microservices Architecture -->
-        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
-          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
-          <div>
-            <div class="flex items-center justify-between mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
-                <i class="fa-solid fa-network-wired text-xl"></i>
-              </div>
-              <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">08</span>
-            </div>
-            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
-              Microservices Architecture
-            </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Building backends as independent Spring Boot and FastAPI services on multiple servers, connected through REST APIs for better scalability and maintenance.
-            </p>
-          </div>
-          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
-            <span>Spring Boot • FastAPI • Distributed</span>
-            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          <div class="pt-5 mt-6 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono-code text-green-400">
+            <span>Microservices</span>
+            <span class="text-white/20">•</span>
+            <span>FastAPI</span>
+            <span class="text-white/20">•</span>
+            <span>Docker</span>
           </div>
         </div>
 
