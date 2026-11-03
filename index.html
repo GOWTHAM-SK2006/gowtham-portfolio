@@ -305,10 +305,12 @@
           </div>
 
           <!-- Big Bold Typography with Typewriter Effect -->
-          <div class="space-y-2">
-            <h1 class="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-[68px] leading-[1.08] tracking-tight text-white">
-              Backend Developer &amp;<br>
-              <span id="hero-typewriter" class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-lime-300">Problem Solver</span><span id="cursor-blink" class="text-green-400 font-normal animate-pulse">|</span>
+          <div class="space-y-1">
+            <h1 class="font-syne font-black tracking-tight text-white" style="font-size: clamp(1.75rem, 5.2vw, 4.25rem); line-height: 1.15;">
+              <span class="block text-white">Backend Developer &amp;</span>
+              <span class="block overflow-hidden whitespace-nowrap" style="min-height: 1.25em; line-height: 1.25em;">
+                <span id="hero-typewriter" class="inline text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-lime-300">Java Developer</span><span id="cursor-blink" class="inline-block text-green-400 font-normal ml-0.5 animate-pulse select-none">|</span>
+              </span>
             </h1>
           </div>
 
@@ -1970,12 +1972,11 @@
     // 1. Typewriter Animation for Hero Section
     const typewriterElement = document.getElementById('hero-typewriter');
     const phrases = [
-      "Problem Solver",
-      "Java & Spring Boot Developer",
+      "Java Developer",
+      "Spring Boot Developer",
       "FastAPI Developer",
       "ML & DL Enthusiast",
-      "Real-Time Systems Builder",
-      "Backend Engineer"
+      "Problem Solver"
     ];
     let phraseIndex = 0;
     let charIndex = phrases[0].length;
