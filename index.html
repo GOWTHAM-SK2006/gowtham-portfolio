@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gowtham S | Backend Developer & Problem Solver</title>
+  
+  <!-- Meta & SEO -->
+  <meta name="description" content="Portfolio of Gowtham S - Backend Developer specializing in Java, Spring Boot, Scalable REST APIs, and Real-time Systems. State-level Kabaddi Athlete based in Chennai.">
+  <meta name="keywords" content="Gowtham S, Backend Developer, Java, Spring Boot, PostgreSQL, WebSockets, REST APIs, Microservices, Portfolio, Chennai">
+  <meta name="author" content="Gowtham S">
+  <meta name="theme-color" content="#050805">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gowtham S | Backend Developer & Problem Solver">
+  <meta property="og:description" content="I build scalable, real-time systems and secure REST APIs with Java and Spring Boot.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/gowtham.jpg">
+
+  <!-- Google Fonts: Syne, Outfit, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#050805',
+              darker: '#030503',
+              card: '#0a100a',
+              cardHover: '#0f180f',
+              green: '#22c55e',
+              neon: '#4ade80',
+              glow: '#00ff66',
+              emerald: '#10b981',
+              border: 'rgba(74, 222, 128, 0.15)',
+              borderHover: 'rgba(74, 222, 128, 0.45)'
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+            inter: ['Inter', 'sans-serif']
+          },
+          animation: {
+            'spin-slow': 'spin 18s linear infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 7s ease-in-out 2s infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050805;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e3a1e;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #22c55e;
+    }
+
+    /* Selection */
+    ::selection {
+      background-color: #22c55e;
+      color: #050805;
+    }
+
+    /* Grid background pattern */
+    .bg-grid-pattern {
+      background-size: 36px 36px;
+      background-image: 
+        radial-gradient(circle, rgba(74, 222, 128, 0.07) 1px, transparent 1px);
+    }
+
+    /* Custom Cursor */
+    #custom-cursor-dot, #custom-cursor-ring {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease;
+    }
+    #custom-cursor-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #4ade80;
+      box-shadow: 0 0 12px #4ade80, 0 0 20px #22c55e;
+    }
+    #custom-cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba(74, 222, 128, 0.5);
+      transition: width 0.25s ease-out, height 0.25s ease-out, border-color 0.25s ease-out, background-color 0.25s ease-out, transform 0.08s linear;
+    }
+    .cursor-hover #custom-cursor-ring {
+      width: 54px;
+      height: 54px;
+      border-color: #4ade80;
+      background-color: rgba(74, 222, 128, 0.1);
+    }
+
+    /* Tilted Card 3D Depth */
+    .hero-photo-wrapper {
+      perspective: 1200px;
+    }
+    .hero-tilted-card {
+      transform: rotate(3.5deg);
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+    }
+    .hero-photo-wrapper:hover .hero-tilted-card {
+      transform: rotate(0deg) scale(1.02);
+      box-shadow: 0 25px 60px -15px rgba(34, 197, 94, 0.35);
+    }
+
+    /* Marquee animation */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marqueeScrollReverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .marquee-track-reverse {
+      display: flex;
+      width: max-content;
+      animation: marqueeScrollReverse 32s linear infinite;
+    }
+
+    /* Glassmorphism card styles */
+    .glass-card {
+      background: rgba(10, 16, 10, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(74, 222, 128, 0.12);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(74, 222, 128, 0.4);
+      box-shadow: 0 10px 35px -10px rgba(34, 197, 94, 0.2);
+      transform: translateY(-4px);
+    }
+
+    /* Fade-in scroll observer class */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Code font snippet */
+    .font-mono-code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    /* Toast Notification */
+    #toast-notification {
+      transform: translateY(120%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #toast-notification.show {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-gray-200 font-inter antialiased relative min-h-screen selection:bg-brand-green selection:text-brand-dark overflow-x-hidden">
+
+  <!-- Custom Glowing Cursor -->
+  <div id="custom-cursor-dot" class="hidden md:block"></div>
+  <div id="custom-cursor-ring" class="hidden md:block"></div>
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-green-500 via-emerald-400 to-lime-300 z-50 transition-all duration-75 w-0"></div>
+
+  <!-- Ambient Blurred Radial Blobs (Design System) -->
+  <div class="fixed top-[-100px] left-[-150px] w-[500px] h-[500px] bg-green-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="fixed top-[30%] right-[-180px] w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-[-150px] left-[20%] w-[550px] h-[550px] bg-green-600/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+
+  <!-- Background Grid Pattern -->
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none -z-20"></div>
+
+  <!-- Sticky Navbar -->
+  <header id="main-nav" class="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#050805]/85 border-b border-white/[0.06] transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="group flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-green-600/40 via-brand-dark to-green-500/20 border border-green-500/30 flex items-center justify-center group-hover:border-green-400 group-hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] transition-all">
+          <span class="font-syne font-black text-green-400 text-lg">&lt;G/&gt;</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-syne font-bold text-white tracking-wide text-lg group-hover:text-green-400 transition-colors">
+            Gowtham<span class="text-green-400">.S</span>
+          </span>
+          <span class="text-[10px] uppercase font-mono-code tracking-widest text-gray-400 -mt-1">Backend Dev</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.07] backdrop-blur-md">
+        <a href="#hero" class="nav-link px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-colors" data-section="hero">Home</a>
+        <a href="#about" class="nav-link px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-colors" data-section="about">About</a>
+        <a href="#services" class="nav-link px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-colors" data-section="services">Services</a>
+        <a href="#skills" class="nav-link px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-colors" data-section="skills">Skills</a>
+        <a href="#projects" class="nav-link px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-colors" data-section="projects">Projects</a>
+        <a href="#education" class="nav-link px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-colors" data-section="education">Education</a>
+        <a href="#contact" class="nav-link px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-colors" data-section="contact">Contact</a>
+      </nav>
+
+      <!-- Right Action Pill Button -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#contact" class="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-syne font-semibold text-xs tracking-wider uppercase text-black bg-gradient-to-r from-green-400 to-emerald-400 shadow-[0_0_20px_rgba(74,222,128,0.35)] hover:shadow-[0_0_28px_rgba(74,222,128,0.6)] hover:scale-105 active:scale-95 transition-all duration-300">
+          <span>Contact me</span>
+          <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 text-gray-300 hover:text-green-400 hover:border-green-500/30 transition-colors" aria-label="Toggle Navigation">
+        <i id="menu-icon" class="fa-solid fa-bars-staggered text-lg"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-5 pt-3 pb-6 bg-[#070d07] border-b border-green-500/20 shadow-2xl">
+      <div class="flex flex-col space-y-2">
+        <a href="#hero" class="mobile-nav-link px-4 py-2.5 rounded-xl text-base font-medium text-gray-300 hover:bg-green-500/10 hover:text-green-400 transition-colors">Home</a>
+        <a href="#about" class="mobile-nav-link px-4 py-2.5 rounded-xl text-base font-medium text-gray-300 hover:bg-green-500/10 hover:text-green-400 transition-colors">About</a>
+        <a href="#services" class="mobile-nav-link px-4 py-2.5 rounded-xl text-base font-medium text-gray-300 hover:bg-green-500/10 hover:text-green-400 transition-colors">Services</a>
+        <a href="#skills" class="mobile-nav-link px-4 py-2.5 rounded-xl text-base font-medium text-gray-300 hover:bg-green-500/10 hover:text-green-400 transition-colors">Skills</a>
+        <a href="#projects" class="mobile-nav-link px-4 py-2.5 rounded-xl text-base font-medium text-gray-300 hover:bg-green-500/10 hover:text-green-400 transition-colors">Projects</a>
+        <a href="#education" class="mobile-nav-link px-4 py-2.5 rounded-xl text-base font-medium text-gray-300 hover:bg-green-500/10 hover:text-green-400 transition-colors">Education</a>
+        <a href="#contact" class="mobile-nav-link px-4 py-2.5 rounded-xl text-base font-medium text-gray-300 hover:bg-green-500/10 hover:text-green-400 transition-colors">Contact</a>
+        <div class="pt-2">
+          <a href="#contact" class="w-full flex items-center justify-center gap-2 py-3 rounded-full font-syne font-bold text-xs uppercase tracking-wider text-black bg-gradient-to-r from-green-400 to-emerald-400 shadow-[0_0_20px_rgba(74,222,128,0.3)]">
+            <span>Contact me</span>
+            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Hero Section -->
+  <section id="hero" class="relative pt-10 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Hero Left Column: Typography & CTAs -->
+        <div class="lg:col-span-7 space-y-7 text-left">
+          
+          <!-- Location / Intro Pill -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/25 backdrop-blur-md">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            </span>
+            <span class="font-syne font-semibold text-xs sm:text-sm text-green-300 tracking-wide">
+              Hi! I'm Gowtham - Based in Chennai
+            </span>
+          </div>
+
+          <!-- Big Bold Typography with Typewriter Effect -->
+          <div class="space-y-2">
+            <h1 class="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-[68px] leading-[1.08] tracking-tight text-white">
+              Backend Developer &amp;<br>
+              <span id="hero-typewriter" class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-lime-300">Problem Solver</span><span id="cursor-blink" class="text-green-400 font-normal animate-pulse">|</span>
+            </h1>
+          </div>
+
+          <!-- Subtext -->
+          <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl font-light leading-relaxed">
+            I build scalable, real-time systems and secure REST APIs with <span class="text-white font-medium">Java</span> and <span class="text-green-400 font-medium">Spring Boot</span>.
+          </p>
+
+          <!-- Buttons Row -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <!-- View Projects (Green filled pill) -->
+            <a href="#projects" class="group px-7 py-3.5 rounded-full font-syne font-bold text-sm tracking-wide text-black bg-gradient-to-r from-green-400 via-emerald-400 to-green-500 shadow-[0_0_25px_rgba(74,222,128,0.4)] hover:shadow-[0_0_35px_rgba(74,222,128,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2.5">
+              <span>View Projects</span>
+              <i class="fa-solid fa-arrow-down-long group-hover:translate-y-1 transition-transform"></i>
+            </a>
+
+            <!-- Download Resume (Outline pill) -->
+            <a href="assets/Gowtham_S_Resume.pdf" download="Gowtham_S_Resume.pdf" class="group px-7 py-3.5 rounded-full font-syne font-semibold text-sm tracking-wide text-white bg-white/[0.03] border border-green-500/35 hover:border-green-400 hover:bg-green-500/10 hover:shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2.5">
+              <i class="fa-solid fa-file-arrow-down text-green-400 group-hover:animate-bounce"></i>
+              <span>Download Resume</span>
+            </a>
+          </div>
+
+          <!-- Social Quick Links -->
+          <div class="flex items-center gap-3 pt-2">
+            <span class="text-xs uppercase font-mono-code text-gray-500 tracking-wider">Connect:</span>
+            <a href="https://github.com/GOWTHAM-SK2006" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-gray-300 hover:text-green-400 hover:border-green-500/40 hover:bg-green-500/10 hover:shadow-[0_0_12px_rgba(74,222,128,0.3)] transition-all" title="GitHub Profile">
+              <i class="fa-brands fa-github text-sm"></i>
+            </a>
+            <a href="https://linkedin.com/in/gowtham-s" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-gray-300 hover:text-green-400 hover:border-green-500/40 hover:bg-green-500/10 hover:shadow-[0_0_12px_rgba(74,222,128,0.3)] transition-all" title="LinkedIn Profile">
+              <i class="fa-brands fa-linkedin-in text-sm"></i>
+            </a>
+            <a href="https://leetcode.com/u/bMVjPlQDS2" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-gray-300 hover:text-green-400 hover:border-green-500/40 hover:bg-green-500/10 hover:shadow-[0_0_12px_rgba(74,222,128,0.3)] transition-all" title="LeetCode Profile">
+              <i class="fa-solid fa-code text-sm"></i>
+            </a>
+            <a href="mailto:surulivelgowtham@gmail.com" class="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-gray-300 hover:text-green-400 hover:border-green-500/40 hover:bg-green-500/10 hover:shadow-[0_0_12px_rgba(74,222,128,0.3)] transition-all" title="Send Email">
+              <i class="fa-solid fa-envelope text-sm"></i>
+            </a>
+          </div>
+
+          <!-- Small Stats Row -->
+          <div class="pt-6 border-t border-white/[0.08] grid grid-cols-3 gap-3 sm:gap-6">
+            <div class="space-y-1">
+              <div class="font-syne font-extrabold text-2xl sm:text-3xl text-white flex items-baseline">
+                <span class="counter" data-target="10000">10,000</span><span class="text-green-400 font-bold">+</span>
+              </div>
+              <p class="text-[11px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">Users Served</p>
+            </div>
+
+            <div class="space-y-1 border-l border-white/[0.08] pl-3 sm:pl-6">
+              <div class="font-syne font-extrabold text-2xl sm:text-3xl text-white flex items-baseline">
+                <span class="counter" data-target="150">150</span><span class="text-green-400 font-bold">+</span>
+              </div>
+              <p class="text-[11px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">Buses Tracked</p>
+            </div>
+
+            <div class="space-y-1 border-l border-white/[0.08] pl-3 sm:pl-6">
+              <div class="font-syne font-extrabold text-2xl sm:text-3xl text-white flex items-baseline">
+                <span>1v1</span>
+              </div>
+              <p class="text-[11px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">Live Coding Battles</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Hero Right Column: Tilted Photo Card with Green Gradient Backdrop -->
+        <div class="lg:col-span-5 flex justify-center items-center">
+          <div class="hero-photo-wrapper relative w-full max-w-[390px] mx-auto py-6">
+            
+            <!-- Glowing Green Gradient Backdrop Blob behind Card -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-green-500/40 via-emerald-400/30 to-lime-300/25 rounded-3xl blur-2xl transform scale-105 pointer-events-none animate-pulse-slow"></div>
+
+            <!-- Tilted Card Container -->
+            <div class="hero-tilted-card relative rounded-3xl p-3 bg-gradient-to-b from-white/10 via-green-500/10 to-brand-card/90 border border-green-500/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(74,222,128,0.25)] backdrop-blur-xl">
+              
+              <!-- Photo Inside Card -->
+              <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#0c140c] border border-white/10">
+                <img src="assets/gowtham.jpg" alt="Gowtham S - Backend Developer" class="w-full h-full object-cover object-top filter contrast-[1.03] transition-transform duration-700 hover:scale-105">
+                
+                <!-- Bottom Dark Gradient Overlay for text contrast -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050805] via-transparent to-black/10 opacity-70 pointer-events-none"></div>
+
+                <!-- Floating Badge Inside Card: Status Pill -->
+                <div class="absolute top-4 right-4 px-3.5 py-1.5 rounded-full bg-black/60 border border-green-400/40 backdrop-blur-md flex items-center gap-2 shadow-lg">
+                  <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+                  <span class="text-[11px] font-syne font-bold text-white tracking-wide">Available for Roles</span>
+                </div>
+
+                <!-- Floating Badge Inside Card: Bottom Info -->
+                <div class="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-black/75 border border-white/15 backdrop-blur-md flex items-center justify-between">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center text-green-400">
+                      <i class="fa-solid fa-shield-halved text-xs"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-syne font-bold text-xs text-white">Java &amp; Spring Boot</h4>
+                      <p class="text-[10px] text-gray-400 font-mono-code">Robust Systems</p>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] font-mono-code text-green-400 font-semibold px-2 py-0.5 rounded bg-green-500/10 border border-green-500/20">CGPA 8.63</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Outer Floating Tag (Bottom Left) -->
+              <div class="absolute -bottom-5 -left-4 sm:-left-6 px-4 py-2.5 rounded-2xl bg-[#091109]/90 border border-green-500/40 backdrop-blur-xl shadow-2xl flex items-center gap-3 animate-float">
+                <div class="w-9 h-9 rounded-xl bg-green-500/20 border border-green-400/30 flex items-center justify-center text-green-400">
+                  <i class="fa-solid fa-trophy text-sm"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] uppercase font-mono-code tracking-wider text-gray-400">Athletic Spirit</p>
+                  <p class="text-xs font-syne font-bold text-white">State Kabaddi Player (10+ Yrs)</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Marquee Strip 1: Tech Stack Infinite Scroll -->
+  <div class="py-4 bg-[#081208]/90 border-y border-green-500/20 relative overflow-hidden backdrop-blur-md">
+    <div class="marquee-track flex items-center gap-8 text-xs sm:text-sm font-syne font-bold uppercase tracking-widest text-gray-300">
+      <span class="flex items-center gap-3 text-green-400"><i class="fa-solid fa-bolt"></i> Java 17/21</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">Spring Boot</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">PostgreSQL</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">WebSockets</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-400">Docker</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">RESTful APIs</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">Hibernate &amp; JPA</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">MySQL</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-400">Scalable System Design</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">Spring Security + JWT</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">Microservices</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">Data Structures &amp; Algorithms</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-400">Tailwind CSS</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">Git &amp; GitHub</span>
+      <span class="text-white/20">✦</span>
+      <!-- Duplicate Set for Seamless Infinite Loop -->
+      <span class="flex items-center gap-3 text-green-400"><i class="fa-solid fa-bolt"></i> Java 17/21</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">Spring Boot</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">PostgreSQL</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">WebSockets</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-400">Docker</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">RESTful APIs</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">Hibernate &amp; JPA</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">MySQL</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-400">Scalable System Design</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">Spring Security + JWT</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">Microservices</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">Data Structures &amp; Algorithms</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-400">Tailwind CSS</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">Git &amp; GitHub</span>
+      <span class="text-white/20">✦</span>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="fade-up space-y-3 mb-14 text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-mono-code uppercase text-green-400 tracking-wider">
+          <i class="fa-solid fa-user-astronaut"></i> // 01. PROFILE
+        </div>
+        <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
+          About <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Me</span>
+        </h2>
+        <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+      </div>
+
+      <!-- About Grid Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Bio Card -->
+        <div class="fade-up lg:col-span-7 glass-card p-8 sm:p-10 rounded-3xl space-y-6">
+          <h3 class="font-syne font-bold text-2xl text-white">
+            <span class="text-green-400 whitespace-nowrap">Architecture-Driven</span> Backend Developer &amp; Athlete
+          </h3>
+
+          <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-light">
+            Backend-focused software developer with expertise in <strong class="text-white font-medium">Java and Spring Boot</strong>, experienced in building scalable, real-time applications and secure REST APIs.
+          </p>
+
+          <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-light">
+            Built a real-time bus tracking platform used by <span class="text-green-400 font-semibold">10,000+ users across 150+ buses</span> and a gamified coding platform supporting <span class="text-green-400 font-semibold">live 1v1 competitions</span>. Strong foundation in data structures and problem solving.
+          </p>
+
+          <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-light">
+            Also a <strong class="text-white font-medium">state-level Kabaddi player</strong> with <span class="text-green-400 font-semibold">10+ years of experience and 200+ matches</span>, with a growing interest in sports analytics and AI. Passionate about designing efficient, high-performance systems.
+          </p>
+
+          <!-- Core Attributes Quick Grid -->
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center gap-3">
+              <i class="fa-solid fa-location-dot text-green-400 text-base"></i>
+              <div>
+                <p class="text-[11px] text-gray-400 uppercase font-mono-code">Location</p>
+                <p class="text-sm font-medium text-white">Chennai, Tamil Nadu</p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center gap-3">
+              <i class="fa-solid fa-graduation-cap text-green-400 text-base"></i>
+              <div>
+                <p class="text-[11px] text-gray-400 uppercase font-mono-code">Degree</p>
+                <p class="text-sm font-medium text-white">B.Tech CSE (AI &amp; ML)</p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center gap-3">
+              <i class="fa-solid fa-envelope text-green-400 text-base"></i>
+              <div>
+                <p class="text-[11px] text-gray-400 uppercase font-mono-code">Email</p>
+                <p class="text-xs sm:text-sm font-medium text-white truncate">surulivelgowtham@gmail.com</p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center gap-3">
+              <i class="fa-solid fa-medal text-green-400 text-base"></i>
+              <div>
+                <p class="text-[11px] text-gray-400 uppercase font-mono-code">Athletics</p>
+                <p class="text-sm font-medium text-white">State Kabaddi (10+ Yrs)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 4 Pillar Feature Highlights -->
+        <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+          
+          <!-- Pillar 1 -->
+          <div class="fade-up glass-card p-6 rounded-2xl flex items-start gap-4 group">
+            <div class="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:bg-green-500/20 transition-all flex-shrink-0">
+              <i class="fa-solid fa-server text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-syne font-bold text-base text-white group-hover:text-green-300 transition-colors">Scalable Architecture</h4>
+              <p class="text-xs text-gray-400 mt-1 leading-relaxed">
+                Layered backend structures, Spring Boot REST APIs, and microservices crafted for resilience, security, and low latency.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="fade-up glass-card p-6 rounded-2xl flex items-start gap-4 group">
+            <div class="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:bg-green-500/20 transition-all flex-shrink-0">
+              <i class="fa-solid fa-tower-broadcast text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-syne font-bold text-base text-white group-hover:text-green-300 transition-colors">Real-Time Telemetry</h4>
+              <p class="text-xs text-gray-400 mt-1 leading-relaxed">
+                Full-duplex WebSocket connections and live mapping powering tracking for 150+ fleet buses and instant 1v1 battle states.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="fade-up glass-card p-6 rounded-2xl flex items-start gap-4 group">
+            <div class="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:bg-green-500/20 transition-all flex-shrink-0">
+              <i class="fa-solid fa-dumbbell text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-syne font-bold text-base text-white group-hover:text-green-300 transition-colors">Athletic Resilience</h4>
+              <p class="text-xs text-gray-400 mt-1 leading-relaxed">
+                Over 200 competitive state-level Kabaddi matches instill split-second decision-making, relentless stamina, and leadership.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="fade-up glass-card p-6 rounded-2xl flex items-start gap-4 group">
+            <div class="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:bg-green-500/20 transition-all flex-shrink-0">
+              <i class="fa-solid fa-chart-line text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-syne font-bold text-base text-white group-hover:text-green-300 transition-colors">Sports Analytics &amp; AI</h4>
+              <p class="text-xs text-gray-400 mt-1 leading-relaxed">
+                Bridging athletic intuition with mathematical frameworks like CPI to decode match data, tactical patterns, and player KPIs.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Services / "What I do" Section -->
+  <section id="services" class="py-24 relative bg-gradient-to-b from-transparent via-[#060c06]/50 to-transparent">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="fade-up space-y-3 mb-16 text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-mono-code uppercase text-green-400 tracking-wider">
+          <i class="fa-solid fa-cubes"></i> // 02. SERVICES
+        </div>
+        <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
+          What I <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Do</span>
+        </h2>
+        <p class="text-gray-400 max-w-xl text-sm sm:text-base">
+          Engineering reliable systems from high-throughput backend APIs to responsive frontends and real-time streams.
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+      </div>
+
+      <!-- 4 Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Service 1 -->
+        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
+                <i class="fa-solid fa-server text-xl"></i>
+              </div>
+              <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">01</span>
+            </div>
+            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
+              Backend &amp; REST API Development
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Designing production-ready, layered RESTful APIs using Java and Spring Boot. Equipped with Spring Security, JWT role-based authorization, and clean domain design.
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
+            <span>Spring Boot • JWT</span>
+            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
+                <i class="fa-solid fa-satellite-dish text-xl"></i>
+              </div>
+              <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">02</span>
+            </div>
+            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
+              Real-Time Systems
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Architecting full-duplex communication channels with WebSockets. Proven experience building live vehicle tracking systems and competitive live coding battles.
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
+            <span>WebSockets • Live Sync</span>
+            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
+                <i class="fa-solid fa-database text-xl"></i>
+              </div>
+              <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">03</span>
+            </div>
+            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
+              Database Design &amp; Optimization
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Constructing normalized relational schemas in PostgreSQL and MySQL. Proficient in indexing, join optimization, ACID transactions, and JPA performance tuning.
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
+            <span>PostgreSQL • MySQL</span>
+            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="fade-up glass-card p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-green-500/10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all"></div>
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] transition-all">
+                <i class="fa-solid fa-laptop-code text-xl"></i>
+              </div>
+              <span class="font-syne font-black text-3xl text-white/10 group-hover:text-green-500/30 transition-colors">04</span>
+            </div>
+            <h3 class="font-syne font-bold text-xl text-white mb-3 group-hover:text-green-400 transition-colors">
+              Full-Stack Web Apps
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Delivering end-to-end applications combining rock-solid Java backends with modern, responsive frontends styled with Tailwind CSS, HTML5, and JavaScript.
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-code text-green-400">
+            <span>Tailwind • JS • Spring</span>
+            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1.5 transition-transform"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="fade-up space-y-3 mb-16 text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-mono-code uppercase text-green-400 tracking-wider">
+          <i class="fa-solid fa-code"></i> // 03. SKILLS
+        </div>
+        <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
+          Technical <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Arsenal</span>
+        </h2>
+        <p class="text-gray-400 max-w-xl text-sm sm:text-base">
+          Battle-tested frameworks, languages, and architectures I leverage to build reliable software.
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+      </div>
+
+      <!-- Grouped Skills Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Category: Languages -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
+              <i class="fa-solid fa-terminal text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-syne font-bold text-lg text-white">Programming Languages</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Core logic &amp; scripting</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 hover:bg-green-500/20 transition-all flex items-center gap-2">
+              <i class="fa-brands fa-java text-sm"></i> Java (17 / 21)
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 hover:bg-green-500/10 transition-all flex items-center gap-2">
+              <i class="fa-brands fa-python text-sm text-yellow-400"></i> Python
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 hover:bg-green-500/10 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-database text-sm text-blue-400"></i> SQL
+            </span>
+          </div>
+        </div>
+
+        <!-- Category: Backend -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
+              <i class="fa-solid fa-gears text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-syne font-bold text-lg text-white">Backend Engineering</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Enterprise Java stack</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all">
+              Spring Boot
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              Spring MVC
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              Spring Security
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              Spring REST
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              Hibernate / JPA
+            </span>
+          </div>
+        </div>
+
+        <!-- Category: Real-time & System Design -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
+              <i class="fa-solid fa-network-wired text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-syne font-bold text-lg text-white">Real-Time &amp; System Design</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Concurrency &amp; streams</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all flex items-center gap-1.5">
+              <i class="fa-solid fa-bolt text-xs"></i> WebSockets
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              Scalable System Design
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              Distributed Systems (Basics)
+            </span>
+          </div>
+        </div>
+
+        <!-- Category: Databases -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
+              <i class="fa-solid fa-server text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-syne font-bold text-lg text-white">Databases &amp; Storage</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Relational tuning &amp; ACID</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              PostgreSQL
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              MySQL
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
+              Complex Joins &amp; Indexing
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              Query Optimization
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              Transactions &amp; Locking
+            </span>
+          </div>
+        </div>
+
+        <!-- Category: Core Concepts -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
+              <i class="fa-solid fa-brain text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-syne font-bold text-lg text-white">Core Computer Science</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Architectural principles</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
+              Data Structures &amp; Algorithms
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              RESTful API Design
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              JWT Authentication
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              MVC Architecture
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              Microservices
+            </span>
+          </div>
+        </div>
+
+        <!-- Category: Frontend & Tools -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
+              <i class="fa-solid fa-toolbox text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-syne font-bold text-lg text-white">Frontend &amp; Dev Tools</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Delivery pipeline &amp; UI</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              HTML5 &amp; CSS3
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              JavaScript (ES6+)
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
+              Tailwind CSS
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              Git &amp; GitHub
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              Maven
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+              Docker
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bonus Sports Analytics Strip -->
+      <div class="fade-up mt-8 p-6 rounded-3xl bg-gradient-to-r from-green-950/30 via-[#0a140a] to-emerald-950/20 border border-green-500/20 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400">
+            <i class="fa-solid fa-chart-pie text-base"></i>
+          </div>
+          <div>
+            <h4 class="font-syne font-bold text-sm sm:text-base text-white">Sports Analytics &amp; Tactical Intelligence</h4>
+            <p class="text-xs text-gray-400">Cullinan Performance Index (CPI) • Match Strategy • Raid &amp; Defense Telemetry • Video Analysis</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-full text-[11px] font-mono-code bg-green-500/10 text-green-400 border border-green-500/30">
+            Kabaddi + Cricket Data Science
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="fade-up space-y-3 mb-16 text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-mono-code uppercase text-green-400 tracking-wider">
+          <i class="fa-solid fa-fire-flame-curved"></i> // 04. PROJECTS
+        </div>
+        <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
+          Featured <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Projects</span>
+        </h2>
+        <p class="text-gray-400 max-w-xl text-sm sm:text-base">
+          Real-world applications engineered with Spring Boot, real-time WebSockets, and data-driven architectures.
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+      </div>
+
+      <!-- Projects Stack List -->
+      <div class="space-y-12">
+
+        <!-- Project 1: CodeClash -->
+        <div class="fade-up glass-card rounded-3xl p-8 sm:p-10 border border-green-500/25 relative overflow-hidden group">
+          <!-- Ambient card glow -->
+          <div class="absolute -top-24 -right-24 w-80 h-80 bg-green-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-green-500/25 transition-all"></div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3.5 py-1 rounded-full text-xs font-syne font-bold uppercase tracking-wider bg-green-500/20 text-green-400 border border-green-400/40">
+                  <i class="fa-solid fa-trophy mr-1 text-xs"></i> Flagship Platform
+                </span>
+                <span class="text-xs font-mono-code text-gray-400">Full-Stack Real-Time</span>
+              </div>
+
+              <h3 class="font-syne font-extrabold text-2xl sm:text-3xl text-white group-hover:text-green-300 transition-colors">
+                CodeClash - Gamified Competitive Coding Platform
+              </h3>
+
+              <p class="text-gray-300 text-sm sm:text-base leading-relaxed font-light">
+                Full-stack platform to practice and compete in <strong class="text-white font-medium">real-time 1v1 coding battles</strong>. Engineered with Java, Spring Boot, and layered REST APIs; secured via Spring Security + JWT with role-based access; integrates LeetCode-style problem sets, dynamic live leaderboards, contests, and a coin-based reward system with PostgreSQL persistence.
+              </p>
+
+              <!-- Key Highlights Badges -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-2">
+                <div class="flex items-center gap-2.5 text-xs text-gray-300">
+                  <i class="fa-solid fa-circle-check text-green-400"></i>
+                  <span>Real-Time 1v1 Live Coding Battles</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-xs text-gray-300">
+                  <i class="fa-solid fa-circle-check text-green-400"></i>
+                  <span>Spring Security + JWT Role-Based Access</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-xs text-gray-300">
+                  <i class="fa-solid fa-circle-check text-green-400"></i>
+                  <span>LeetCode-Style Problem Integration</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-xs text-gray-300">
+                  <i class="fa-solid fa-circle-check text-green-400"></i>
+                  <span>Coin-Based Rewards &amp; Dynamic Leaderboards</span>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-green-300 border border-green-500/30">Java</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-green-300 border border-green-500/30">Spring Boot</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">REST APIs</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">Spring Security + JWT</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">PostgreSQL</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">Spring Data JPA</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">Tailwind CSS</span>
+              </div>
+
+              <!-- Action Links -->
+              <div class="flex items-center gap-4 pt-3">
+                <a href="https://github.com/GOWTHAM-SK2006" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full font-syne font-bold text-xs uppercase tracking-wider text-black bg-gradient-to-r from-green-400 to-emerald-400 hover:shadow-[0_0_20px_rgba(74,222,128,0.5)] hover:scale-105 transition-all flex items-center gap-2">
+                  <i class="fa-brands fa-github text-sm"></i>
+                  <span>View Repository</span>
+                </a>
+                <span class="text-xs font-mono-code text-gray-400">
+                  <i class="fa-solid fa-code-commit text-green-400 mr-1"></i> Layered Architecture
+                </span>
+              </div>
+            </div>
+
+            <!-- Visual Terminal Representation -->
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl bg-[#030603] border border-green-500/30 p-5 font-mono-code text-xs space-y-3 shadow-2xl relative">
+                <div class="flex items-center justify-between pb-3 border-b border-white/10 text-gray-500">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                  </div>
+                  <span class="text-[10px] text-gray-400">CodeClashBattleEngine.java</span>
+                </div>
+                <div class="text-gray-400 space-y-1.5 leading-relaxed overflow-x-auto">
+                  <p class="text-green-400">@RestController</p>
+                  <p class="text-green-400">@RequestMapping(<span class="text-emerald-200">"/api/v1/battles"</span>)</p>
+                  <p class="text-gray-300">public class <span class="text-white font-bold">BattleArenaController</span> {</p>
+                  <p class="pl-4 text-gray-400">@Autowired</p>
+                  <p class="pl-4 text-gray-400">private <span class="text-green-300">BattleMatchmakingService</span> matchmaking;</p>
+                  <p class="pl-4 text-green-400">@PostMapping(<span class="text-emerald-200">"/queue"</span>)</p>
+                  <p class="pl-4 text-gray-300">public ResponseEntity&lt;BattleSession&gt; <span class="text-white font-semibold">joinQueue</span>() {</p>
+                  <p class="pl-8 text-lime-300">// 1v1 Live matchmaking &amp; STOMP WebSocket</p>
+                  <p class="pl-8 text-gray-300">return ResponseEntity.ok(matchmaking.findMatch());</p>
+                  <p class="pl-4 text-gray-300">}</p>
+                  <p class="text-gray-300">}</p>
+                </div>
+                <div class="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-400">
+                  <span class="flex items-center gap-1.5"><i class="fa-solid fa-signal text-green-400"></i> WS: CONNECTED</span>
+                  <span class="text-green-400">STATUS: 200 OK</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 2: College Bus Tracking Application -->
+        <div class="fade-up glass-card rounded-3xl p-8 sm:p-10 border border-green-500/25 relative overflow-hidden group">
+          <div class="absolute -top-24 -right-24 w-80 h-80 bg-green-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-green-500/25 transition-all"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3.5 py-1 rounded-full text-xs font-syne font-bold uppercase tracking-wider bg-green-500/20 text-green-400 border border-green-400/40">
+                  <i class="fa-solid fa-bus mr-1 text-xs"></i> Real-Time Transit
+                </span>
+                <span class="text-xs font-mono-code text-gray-400">High-Throughput Fleet</span>
+              </div>
+
+              <h3 class="font-syne font-extrabold text-2xl sm:text-3xl text-white group-hover:text-green-300 transition-colors">
+                College Bus Tracking Application
+              </h3>
+
+              <p class="text-gray-300 text-sm sm:text-base leading-relaxed font-light">
+                Developed a backend system for <strong class="text-white font-medium">real-time college bus tracking</strong> with route and stop management. Engineered with Spring Boot REST APIs (layered architecture), integrated OpenStreetMap for live location tracking and map visualization, and managed relational data in MySQL with indexing designed for rapid telemetry updates for 10,000+ students and administrators.
+              </p>
+
+              <!-- Stats Highlights -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 py-2">
+                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                  <div class="font-syne font-extrabold text-xl text-green-400">10,000+</div>
+                  <div class="text-[10px] uppercase font-mono-code text-gray-400">Users Served</div>
+                </div>
+                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                  <div class="font-syne font-extrabold text-xl text-green-400">150+</div>
+                  <div class="text-[10px] uppercase font-mono-code text-gray-400">Buses Tracked</div>
+                </div>
+                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-center col-span-2 sm:col-span-1">
+                  <div class="font-syne font-extrabold text-xl text-green-400">&lt; 100ms</div>
+                  <div class="text-[10px] uppercase font-mono-code text-gray-400">GPS Sync Rate</div>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-green-300 border border-green-500/30">Java</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-green-300 border border-green-500/30">Spring Boot</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">REST APIs</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">OpenStreetMap (OSM)</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">MySQL</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">Layered Architecture</span>
+              </div>
+
+              <!-- Action Links -->
+              <div class="flex items-center gap-4 pt-3">
+                <a href="https://github.com/GOWTHAM-SK2006" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full font-syne font-bold text-xs uppercase tracking-wider text-black bg-gradient-to-r from-green-400 to-emerald-400 hover:shadow-[0_0_20px_rgba(74,222,128,0.5)] hover:scale-105 transition-all flex items-center gap-2">
+                  <i class="fa-brands fa-github text-sm"></i>
+                  <span>View Repository</span>
+                </a>
+                <span class="text-xs font-mono-code text-gray-400">
+                  <i class="fa-solid fa-map-pin text-green-400 mr-1"></i> Live Geo-Tracking
+                </span>
+              </div>
+            </div>
+
+            <!-- Visual Map Simulation Card -->
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl bg-[#030603] border border-green-500/30 p-5 space-y-4 shadow-2xl relative">
+                <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-ping"></span>
+                    <span class="font-syne font-bold text-xs text-white">Live Telemetry Stream</span>
+                  </div>
+                  <span class="text-[10px] font-mono-code text-green-400">ACTIVE: 150 BUSES</span>
+                </div>
+
+                <!-- Simulation Radar / Route Graphic -->
+                <div class="h-44 rounded-xl bg-[#081208] border border-green-500/20 relative overflow-hidden flex items-center justify-center">
+                  <!-- Radar Circle Grid -->
+                  <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+                  <div class="w-36 h-36 rounded-full border border-green-500/20 absolute"></div>
+                  <div class="w-24 h-24 rounded-full border border-green-500/30 absolute"></div>
+                  <div class="w-12 h-12 rounded-full border border-green-500/50 absolute animate-ping"></div>
+
+                  <!-- Path Vector -->
+                  <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 20 120 Q 90 30 180 80 T 320 40" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="5 5"></path>
+                    <circle cx="180" cy="80" r="5" fill="#4ade80"></circle>
+                    <circle cx="320" cy="40" r="6" fill="#00ff66"></circle>
+                  </svg>
+
+                  <!-- Floating Ping Badge -->
+                  <div class="absolute bottom-3 left-3 px-3 py-1 rounded-md bg-black/80 border border-green-500/30 text-[10px] font-mono-code text-green-300">
+                    <i class="fa-solid fa-location-arrow text-green-400 mr-1"></i> Bus #42: Tambaram → Sairam Campus
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between text-[11px] font-mono-code text-gray-400">
+                  <span>Provider: OpenStreetMap</span>
+                  <span class="text-green-400">Lat: 12.9601° N, Long: 80.0574° E</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 3: CPI-Based Cricket Performance Analytics -->
+        <div class="fade-up glass-card rounded-3xl p-8 sm:p-10 border border-green-500/25 relative overflow-hidden group">
+          <div class="absolute -top-24 -right-24 w-80 h-80 bg-green-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-green-500/25 transition-all"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3.5 py-1 rounded-full text-xs font-syne font-bold uppercase tracking-wider bg-green-500/20 text-green-400 border border-green-400/40">
+                  <i class="fa-solid fa-chart-simple mr-1 text-xs"></i> Sports Analytics
+                </span>
+                <span class="text-xs font-mono-code text-gray-400">AI &amp; Data Science</span>
+              </div>
+
+              <h3 class="font-syne font-extrabold text-2xl sm:text-3xl text-white group-hover:text-green-300 transition-colors">
+                CPI-Based Cricket Performance Analytics Framework
+              </h3>
+
+              <p class="text-gray-300 text-sm sm:text-base leading-relaxed font-light">
+                Applied the <strong class="text-white font-medium">Cullinan Performance Index (CPI)</strong> framework to evaluate cricket player and team performance across <span class="text-green-400 font-semibold">six core performance pillars</span>: Technical, Tactical, Physical, Mental, Standards, and Impact. Analyzed player performance using PPI and MPI metrics with comprehensive gap analysis and data-driven intelligence reports.
+              </p>
+
+              <!-- Six Pillars Visual Chips -->
+              <div class="space-y-2">
+                <p class="text-xs uppercase font-mono-code tracking-wider text-gray-400">Evaluated Across 6 Core Pillars:</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full text-xs bg-green-500/10 border border-green-500/30 text-green-300">1. Technical</span>
+                  <span class="px-3 py-1 rounded-full text-xs bg-green-500/10 border border-green-500/30 text-green-300">2. Tactical</span>
+                  <span class="px-3 py-1 rounded-full text-xs bg-green-500/10 border border-green-500/30 text-green-300">3. Physical</span>
+                  <span class="px-3 py-1 rounded-full text-xs bg-green-500/10 border border-green-500/30 text-green-300">4. Mental</span>
+                  <span class="px-3 py-1 rounded-full text-xs bg-green-500/10 border border-green-500/30 text-green-300">5. Standards</span>
+                  <span class="px-3 py-1 rounded-full text-xs bg-green-500/10 border border-green-500/30 text-green-300">6. Impact</span>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-green-300 border border-green-500/30">Python</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">Sports Data Analytics</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">CPI Metric</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">PPI &amp; MPI Indices</span>
+                <span class="px-3 py-1 rounded-lg text-xs font-mono-code bg-white/[0.04] text-gray-300 border border-white/10">Gap Analysis</span>
+              </div>
+
+              <!-- Action Links -->
+              <div class="flex items-center gap-4 pt-3">
+                <a href="https://github.com/GOWTHAM-SK2006" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full font-syne font-bold text-xs uppercase tracking-wider text-black bg-gradient-to-r from-green-400 to-emerald-400 hover:shadow-[0_0_20px_rgba(74,222,128,0.5)] hover:scale-105 transition-all flex items-center gap-2">
+                  <i class="fa-brands fa-github text-sm"></i>
+                  <span>View Repository</span>
+                </a>
+                <span class="text-xs font-mono-code text-gray-400">
+                  <i class="fa-solid fa-square-poll-vertical text-green-400 mr-1"></i> Data-Driven Intelligence
+                </span>
+              </div>
+            </div>
+
+            <!-- Visual Metric Chart Simulation -->
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl bg-[#030603] border border-green-500/30 p-5 space-y-3.5 shadow-2xl relative font-mono-code text-xs">
+                <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                  <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-chart-radar text-green-400"></i>
+                    <span class="font-syne font-bold text-xs text-white">CPI Pillar Performance</span>
+                  </div>
+                  <span class="text-[10px] text-green-400">INDEX: 92.4</span>
+                </div>
+
+                <!-- Pillar Bars -->
+                <div class="space-y-2.5 text-gray-300">
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span>Technical Consistency</span>
+                      <span class="text-green-400 font-bold">94%</span>
+                    </div>
+                    <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                      <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-full rounded-full w-[94%]"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span>Tactical Execution</span>
+                      <span class="text-green-400 font-bold">89%</span>
+                    </div>
+                    <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                      <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-full rounded-full w-[89%]"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span>Physical Readiness</span>
+                      <span class="text-green-400 font-bold">96%</span>
+                    </div>
+                    <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                      <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-full rounded-full w-[96%]"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span>Match Impact (MPI)</span>
+                      <span class="text-green-400 font-bold">91%</span>
+                    </div>
+                    <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                      <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-full rounded-full w-[91%]"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-400">
+                  <span>Metric: Cullinan Index</span>
+                  <span class="text-green-400">Gap Analysis: COMPLETE</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Marquee Strip 2: Reverse Infinite Scroll -->
+  <div class="py-4 bg-[#081208]/90 border-y border-green-500/20 relative overflow-hidden backdrop-blur-md">
+    <div class="marquee-track-reverse flex items-center gap-8 text-xs sm:text-sm font-syne font-bold uppercase tracking-widest text-gray-300">
+      <span class="text-green-400">SCALABLE ARCHITECTURES</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">HIGH-THROUGHPUT APIS</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">REAL-TIME GPS TELEMETRY</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">SPRING SECURITY &amp; JWT</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-400">COMPLEX DATABASE INDEXING</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">ATHLETIC DISCIPLINE &amp; GRIT</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">WEBSOCKET CONCURRENCY</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">CLEAN CODE &amp; PATTERNS</span>
+      <span class="text-white/20">✦</span>
+      <!-- Duplicate Set for Seamless Infinite Loop -->
+      <span class="text-green-400">SCALABLE ARCHITECTURES</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">HIGH-THROUGHPUT APIS</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">REAL-TIME GPS TELEMETRY</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">SPRING SECURITY &amp; JWT</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-400">COMPLEX DATABASE INDEXING</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">ATHLETIC DISCIPLINE &amp; GRIT</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-green-300">WEBSOCKET CONCURRENCY</span>
+      <span class="text-white/20">✦</span>
+      <span class="text-gray-200">CLEAN CODE &amp; PATTERNS</span>
+      <span class="text-white/20">✦</span>
+    </div>
+  </div>
+
+  <!-- Education Section -->
+  <section id="education" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="fade-up space-y-3 mb-16 text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-mono-code uppercase text-green-400 tracking-wider">
+          <i class="fa-solid fa-graduation-cap"></i> // 05. ACADEMICS
+        </div>
+        <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
+          Education &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Qualifications</span>
+        </h2>
+        <p class="text-gray-400 max-w-xl text-sm sm:text-base">
+          Academic foundation rooted in Computer Science, Artificial Intelligence, and Problem Solving.
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+      </div>
+
+      <!-- Education Timeline -->
+      <div class="relative border-l-2 border-green-500/30 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-12">
+        
+        <!-- Degree -->
+        <div class="fade-up relative group">
+          <!-- Timeline Glowing Node -->
+          <div class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-5 h-5 rounded-full bg-brand-dark border-2 border-green-400 flex items-center justify-center shadow-[0_0_12px_#22c55e]">
+            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+          </div>
+
+          <div class="glass-card p-7 sm:p-8 rounded-3xl space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span class="px-3 py-1 rounded-full text-xs font-mono-code bg-green-500/10 text-green-400 border border-green-500/30 w-fit">
+                2024 - 2028 (Undergraduate)
+              </span>
+              <span class="font-syne font-extrabold text-base text-white px-3 py-1 rounded-lg bg-green-500/20 border border-green-400/40 w-fit">
+                CGPA: 8.63
+              </span>
+            </div>
+
+            <h3 class="font-syne font-bold text-xl sm:text-2xl text-white">
+              B.Tech in Computer Science &amp; Engineering (Artificial Intelligence &amp; Machine Learning)
+            </h3>
+
+            <p class="text-green-300 font-medium text-sm sm:text-base">
+              Sri Sairam Engineering College, Chennai, Tamil Nadu
+            </p>
+
+            <div class="pt-2 border-t border-white/[0.08]">
+              <p class="text-xs uppercase font-mono-code text-gray-400 mb-2">Relevant Coursework &amp; Core Subjects:</p>
+              <div class="flex flex-wrap gap-2 text-xs">
+                <span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-gray-300">
+                  Data Structures &amp; Algorithms
+                </span>
+                <span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-gray-300">
+                  Database Management Systems (SQL &amp; Relational Design)
+                </span>
+                <span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-gray-300">
+                  Object-Oriented Programming (Java)
+                </span>
+                <span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-gray-300">
+                  Machine Learning Fundamentals
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Class XII -->
+        <div class="fade-up relative group">
+          <div class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-5 h-5 rounded-full bg-brand-dark border-2 border-green-500/60 flex items-center justify-center">
+            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          </div>
+
+          <div class="glass-card p-6 sm:p-7 rounded-3xl space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span class="px-3 py-1 rounded-full text-xs font-mono-code bg-white/[0.04] text-gray-400 border border-white/10 w-fit">
+                2023 - 2024
+              </span>
+              <span class="font-syne font-bold text-sm text-green-300 px-3 py-1 rounded-lg bg-green-500/10 border border-green-500/20 w-fit">
+                90.33%
+              </span>
+            </div>
+
+            <h3 class="font-syne font-bold text-lg sm:text-xl text-white">
+              Class XII (Higher Secondary)
+            </h3>
+
+            <p class="text-gray-400 text-sm">
+              Tirupur, Tamil Nadu
+            </p>
+          </div>
+        </div>
+
+        <!-- Class X -->
+        <div class="fade-up relative group">
+          <div class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-5 h-5 rounded-full bg-brand-dark border-2 border-green-500/40 flex items-center justify-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500/60"></span>
+          </div>
+
+          <div class="glass-card p-6 sm:p-7 rounded-3xl space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span class="px-3 py-1 rounded-full text-xs font-mono-code bg-white/[0.04] text-gray-400 border border-white/10 w-fit">
+                2021 - 2022
+              </span>
+              <span class="font-syne font-bold text-sm text-green-300 px-3 py-1 rounded-lg bg-green-500/10 border border-green-500/20 w-fit">
+                76.00%
+              </span>
+            </div>
+
+            <h3 class="font-syne font-bold text-lg sm:text-xl text-white">
+              Class X (Secondary School)
+            </h3>
+
+            <p class="text-gray-400 text-sm">
+              Tirupur, Tamil Nadu
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Leadership & Community Section -->
+  <section class="py-24 relative bg-gradient-to-b from-transparent via-[#060c06]/50 to-transparent">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="fade-up space-y-3 mb-16 text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-mono-code uppercase text-green-400 tracking-wider">
+          <i class="fa-solid fa-award"></i> // 06. LEADERSHIP &amp; COMMUNITY
+        </div>
+        <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
+          Impact Beyond <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Code</span>
+        </h2>
+        <p class="text-gray-400 max-w-xl text-sm sm:text-base">
+          Proven leadership, athletic resilience, and proactive community engagement.
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+      </div>
+
+      <!-- 4 Leadership Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card 1: Kabaddi -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:bg-green-500/25 transition-all">
+            <i class="fa-solid fa-medal text-lg"></i>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">
+            State-Level Kabaddi Player
+          </h3>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            10+ years of competitive experience (since 4th Standard), competing in 200+ matches across school, district, and state levels. Expert in raid &amp; defense tactical strategy.
+          </p>
+          <div class="pt-2 text-[11px] font-mono-code text-green-400">
+            200+ Tournament Matches
+          </div>
+        </div>
+
+        <!-- Card 2: Project Expo Winner -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:bg-green-500/25 transition-all">
+            <i class="fa-solid fa-trophy text-lg"></i>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">
+            Project Expo Award Winner
+          </h3>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Awarded winner in Project Expo for presenting an innovative technical engineering project, recognized for architectural design and real-world applicability.
+          </p>
+          <div class="pt-2 text-[11px] font-mono-code text-green-400">
+            Innovative Tech Award
+          </div>
+        </div>
+
+        <!-- Card 3: NSS Volunteer -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:bg-green-500/25 transition-all">
+            <i class="fa-solid fa-hand-holding-heart text-lg"></i>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">
+            Active NSS Volunteer
+          </h3>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Dedicated volunteer contributing actively to community welfare, youth empowerment drives, rural support camps, and outreach initiatives.
+          </p>
+          <div class="pt-2 text-[11px] font-mono-code text-green-400">
+            Social &amp; Civic Outreach
+          </div>
+        </div>
+
+        <!-- Card 4: Scouts -->
+        <div class="fade-up glass-card p-7 rounded-3xl space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 group-hover:bg-green-500/25 transition-all">
+            <i class="fa-solid fa-compass text-lg"></i>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">
+            Scouts Participant
+          </h3>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Participated in Scouts, embodying principles of discipline, preparedness, situational navigation, survival skills, and cooperative teamwork.
+          </p>
+          <div class="pt-2 text-[11px] font-mono-code text-green-400">
+            Leadership &amp; Discipline
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="fade-up space-y-3 mb-16 text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-mono-code uppercase text-green-400 tracking-wider">
+          <i class="fa-solid fa-paper-plane"></i> // 07. GET IN TOUCH
+        </div>
+        <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
+          Let's Work <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Together</span>
+        </h2>
+        <p class="text-gray-400 max-w-xl text-sm sm:text-base">
+          Have an exciting role, backend project, or question? Send a message or connect through any platform.
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Left: Contact Details & Social Links -->
+        <div class="fade-up lg:col-span-5 space-y-6">
+          
+          <div class="glass-card p-8 rounded-3xl space-y-6">
+            <h3 class="font-syne font-bold text-2xl text-white">Contact Information</h3>
+            <p class="text-gray-300 text-sm leading-relaxed font-light">
+              I am open to software development internships, backend engineering opportunities, and collaborative innovation projects.
+            </p>
+
+            <div class="space-y-4">
+              
+              <!-- Email Card -->
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-green-500/30 transition-all">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400">
+                    <i class="fa-solid fa-envelope text-sm"></i>
+                  </div>
+                  <div>
+                    <p class="text-[10px] uppercase font-mono-code text-gray-400">Email Address</p>
+                    <a href="mailto:surulivelgowtham@gmail.com" class="text-sm font-medium text-white hover:text-green-400 transition-colors">
+                      surulivelgowtham@gmail.com
+                    </a>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('surulivelgowtham@gmail.com', 'Email copied to clipboard!')" class="text-gray-400 hover:text-green-400 p-2" title="Copy Email">
+                  <i class="fa-regular fa-copy text-sm"></i>
+                </button>
+              </div>
+
+              <!-- Location Card -->
+              <div class="flex items-center p-4 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400">
+                    <i class="fa-solid fa-location-dot text-sm"></i>
+                  </div>
+                  <div>
+                    <p class="text-[10px] uppercase font-mono-code text-gray-400">Location</p>
+                    <p class="text-sm font-medium text-white">Chennai, Tamil Nadu, India</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phone Card -->
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-green-500/30 transition-all">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400">
+                    <i class="fa-solid fa-phone text-sm"></i>
+                  </div>
+                  <div>
+                    <p class="text-[10px] uppercase font-mono-code text-gray-400">Phone</p>
+                    <a href="tel:+919363624212" class="text-sm font-medium text-white hover:text-green-400 transition-colors">
+                      +91 9363624212
+                    </a>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('+919363624212', 'Phone number copied!')" class="text-gray-400 hover:text-green-400 p-2" title="Copy Phone">
+                  <i class="fa-regular fa-copy text-sm"></i>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Social Links Grid -->
+            <div class="pt-4 border-t border-white/[0.08] space-y-3">
+              <p class="text-xs font-mono-code uppercase text-gray-400">Professional Profiles</p>
+              <div class="grid grid-cols-3 gap-3">
+                <a href="https://github.com/GOWTHAM-SK2006" target="_blank" rel="noopener noreferrer" class="p-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-green-500/40 hover:bg-green-500/10 text-center transition-all group">
+                  <i class="fa-brands fa-github text-lg text-gray-300 group-hover:text-green-400 transition-colors"></i>
+                  <p class="text-[11px] font-syne font-bold text-white mt-1">GitHub</p>
+                </a>
+                <a href="https://linkedin.com/in/gowtham-s" target="_blank" rel="noopener noreferrer" class="p-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-green-500/40 hover:bg-green-500/10 text-center transition-all group">
+                  <i class="fa-brands fa-linkedin-in text-lg text-gray-300 group-hover:text-green-400 transition-colors"></i>
+                  <p class="text-[11px] font-syne font-bold text-white mt-1">LinkedIn</p>
+                </a>
+                <a href="https://leetcode.com/u/bMVjPlQDS2" target="_blank" rel="noopener noreferrer" class="p-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-green-500/40 hover:bg-green-500/10 text-center transition-all group">
+                  <i class="fa-solid fa-code text-lg text-gray-300 group-hover:text-green-400 transition-colors"></i>
+                  <p class="text-[11px] font-syne font-bold text-white mt-1">LeetCode</p>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right: Interactive Contact Form UI -->
+        <div class="fade-up lg:col-span-7">
+          <div class="glass-card p-8 sm:p-10 rounded-3xl border border-green-500/25 relative">
+            <h3 class="font-syne font-bold text-2xl text-white mb-2">Send a Message</h3>
+            <p class="text-gray-400 text-sm mb-8">Fill in your information and I will respond promptly.</p>
+
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="space-y-1.5 text-left">
+                  <label for="name" class="text-xs font-mono-code uppercase tracking-wider text-gray-300">Your Name *</label>
+                  <input type="text" id="name" required placeholder="Alex Turner" class="w-full px-4 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-all text-sm">
+                </div>
+                <div class="space-y-1.5 text-left">
+                  <label for="email" class="text-xs font-mono-code uppercase tracking-wider text-gray-300">Your Email *</label>
+                  <input type="email" id="email" required placeholder="alex@company.com" class="w-full px-4 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-all text-sm">
+                </div>
+              </div>
+
+              <div class="space-y-1.5 text-left">
+                <label for="subject" class="text-xs font-mono-code uppercase tracking-wider text-gray-300">Subject</label>
+                <input type="text" id="subject" placeholder="Project Opportunity / Backend Role" class="w-full px-4 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-all text-sm">
+              </div>
+
+              <div class="space-y-1.5 text-left">
+                <label for="message" class="text-xs font-mono-code uppercase tracking-wider text-gray-300">Your Message *</label>
+                <textarea id="message" rows="5" required placeholder="Hi Gowtham, I came across your portfolio and would love to discuss..." class="w-full px-4 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-all text-sm resize-none"></textarea>
+              </div>
+
+              <!-- Green Send Button -->
+              <button type="submit" id="submit-btn" class="w-full py-4 rounded-full font-syne font-bold text-sm uppercase tracking-wider text-black bg-gradient-to-r from-green-400 via-emerald-400 to-green-500 shadow-[0_0_25px_rgba(74,222,128,0.4)] hover:shadow-[0_0_35px_rgba(74,222,128,0.6)] hover:scale-[1.01] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2.5">
+                <span id="btn-text">Send Message</span>
+                <i id="btn-icon" class="fa-solid fa-paper-plane text-xs"></i>
+              </button>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="pt-16 pb-12 border-t border-white/[0.08] bg-[#030603] relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-white/[0.06]">
+        
+        <!-- Logo & Title -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-green-500/20 border border-green-500/30 flex items-center justify-center text-green-400 font-syne font-black text-sm">
+            &lt;G/&gt;
+          </div>
+          <div>
+            <span class="font-syne font-bold text-lg text-white">Gowtham<span class="text-green-400">.S</span></span>
+            <p class="text-xs text-gray-400 font-mono-code">Backend Developer &amp; Problem Solver</p>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex items-center gap-3">
+          <a href="https://github.com/GOWTHAM-SK2006" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-gray-300 hover:text-green-400 hover:border-green-500/40 hover:bg-green-500/10 transition-all" title="GitHub">
+            <i class="fa-brands fa-github text-sm"></i>
+          </a>
+          <a href="https://linkedin.com/in/gowtham-s" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-gray-300 hover:text-green-400 hover:border-green-500/40 hover:bg-green-500/10 transition-all" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in text-sm"></i>
+          </a>
+          <a href="https://leetcode.com/u/bMVjPlQDS2" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-gray-300 hover:text-green-400 hover:border-green-500/40 hover:bg-green-500/10 transition-all" title="LeetCode">
+            <i class="fa-solid fa-code text-sm"></i>
+          </a>
+          <a href="mailto:surulivelgowtham@gmail.com" class="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-gray-300 hover:text-green-400 hover:border-green-500/40 hover:bg-green-500/10 transition-all" title="Email">
+            <i class="fa-solid fa-envelope text-sm"></i>
+          </a>
+        </div>
+
+        <!-- Back to Top Button -->
+        <a href="#hero" class="group flex items-center gap-2 text-xs font-syne font-semibold text-gray-400 hover:text-green-400 transition-colors">
+          <span>Back to Top</span>
+          <div class="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center group-hover:border-green-400 group-hover:bg-green-500/10 transition-all">
+            <i class="fa-solid fa-arrow-up text-xs"></i>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Copyright Row -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <p>&copy; 2026 Gowtham S. All rights reserved.</p>
+        <p class="flex items-center gap-1.5 font-mono-code">
+          Crafted with <i class="fa-solid fa-heart text-green-500 text-[10px]"></i> Java &amp; Tailwind CSS
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Toast Notification Pop-up -->
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 px-5 py-3.5 rounded-2xl bg-[#091509] border border-green-400 text-white shadow-[0_0_30px_rgba(74,222,128,0.35)] flex items-center gap-3 backdrop-blur-xl">
+    <div class="w-7 h-7 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center">
+      <i class="fa-solid fa-check text-xs"></i>
+    </div>
+    <span id="toast-text" class="text-sm font-medium">Message sent successfully!</span>
+  </div>
+
+  <!-- Vanilla JavaScript Logic -->
+  <script>
+    // 1. Typewriter Animation for Hero Section
+    const typewriterElement = document.getElementById('hero-typewriter');
+    const phrases = [
+      "Problem Solver",
+      "Java & Spring Boot Developer",
+      "Real-Time Systems Builder",
+      "Backend Engineer"
+    ];
+    let phraseIndex = 0;
+    let charIndex = phrases[0].length;
+    let isDeleting = true;
+    let typingSpeed = 90;
+
+    function typeEffect() {
+      const currentPhrase = phrases[phraseIndex];
+      
+      if (isDeleting) {
+        typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 35;
+      } else {
+        typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 75;
+      }
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        // Pause at the end of word
+        isDeleting = true;
+        typingSpeed = 2200;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typingSpeed = 350;
+      }
+
+      setTimeout(typeEffect, typingSpeed);
+    }
+    // Start after initial display delay
+    setTimeout(typeEffect, 2200);
+
+    // 1.1 Interactive 3D Card Tilt for Hero Photo
+    const heroWrapper = document.querySelector('.hero-photo-wrapper');
+    const heroCard = document.querySelector('.hero-tilted-card');
+    if (heroWrapper && heroCard) {
+      heroWrapper.addEventListener('mousemove', (e) => {
+        const rect = heroWrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+        heroCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+      heroWrapper.addEventListener('mouseleave', () => {
+        heroCard.style.transform = 'rotate(3.5deg)';
+      });
+    }
+
+    // 2. Custom Glowing Mouse Cursor with Trailing Ring
+    const cursorDot = document.getElementById('custom-cursor-dot');
+    const cursorRing = document.getElementById('custom-cursor-ring');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (cursorDot) {
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+      }
+    });
+
+    function animateCursorRing() {
+      // Smooth interpolation (lerp)
+      ringX += (mouseX - ringX) * 0.16;
+      ringY += (mouseY - ringY) * 0.16;
+
+      if (cursorRing) {
+        cursorRing.style.left = `${ringX}px`;
+        cursorRing.style.top = `${ringY}px`;
+      }
+      requestAnimationFrame(animateCursorRing);
+    }
+    requestAnimationFrame(animateCursorRing);
+
+    // Expand cursor ring when hovering over clickable elements
+    const hoverTargets = document.querySelectorAll('a, button, input, textarea, .glass-card');
+    hoverTargets.forEach((target) => {
+      target.addEventListener('mouseenter', () => {
+        document.body.classList.add('cursor-hover');
+      });
+      target.addEventListener('mouseleave', () => {
+        document.body.classList.remove('cursor-hover');
+      });
+    });
+
+    // 3. Scroll Progress Indicator
+    const scrollProgressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (scrollProgressBar) {
+        scrollProgressBar.style.width = scrolled + '%';
+      }
+    });
+
+    // 4. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        if (isHidden) {
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars-staggered');
+        } else {
+          menuIcon.classList.remove('fa-bars-staggered');
+          menuIcon.classList.add('fa-xmark');
+        }
+      });
+
+      // Close mobile menu when link is clicked
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars-staggered');
+        });
+      });
+    }
+
+    // 5. ScrollSpy: Highlight Active Navbar Section
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let currentSection = '';
+      const scrollPosition = window.pageYOffset + 200;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('text-green-400', 'bg-green-500/15', 'border', 'border-green-500/30');
+        if (link.getAttribute('data-section') === currentSection) {
+          link.classList.add('text-green-400', 'bg-green-500/15', 'border', 'border-green-500/30');
+        }
+      });
+    });
+
+    // 6. Intersection Observer for Fade-Up Animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.12
+    };
+
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(element => {
+      fadeObserver.observe(element);
+    });
+
+    // 7. Stats Counter Animation on Viewport Entry
+    let countersStarted = false;
+    const statsObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !countersStarted) {
+        countersStarted = true;
+        document.querySelectorAll('.counter').forEach(counter => {
+          const target = +counter.getAttribute('data-target');
+          const duration = 1600; // ms
+          const stepTime = 25;
+          const totalSteps = duration / stepTime;
+          const increment = target / totalSteps;
+          let current = 0;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              counter.textContent = target.toLocaleString();
+              clearInterval(timer);
+            } else {
+              counter.textContent = Math.floor(current).toLocaleString();
+            }
+          }, stepTime);
+        });
+      }
+    }, { threshold: 0.4 });
+
+    const heroStats = document.querySelector('.counter');
+    if (heroStats) {
+      statsObserver.observe(heroStats.closest('div'));
+    }
+
+    // 8. Copy to Clipboard Utility
+    function copyToClipboard(text, message) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(message || 'Copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    // 9. Toast Notification Handler
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      const toastText = document.getElementById('toast-text');
+      if (toast && toastText) {
+        toastText.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3200);
+      }
+    }
+
+    // 10. Contact Form Simulation Handler
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+
+      // Loading state
+      btnText.textContent = "Sending...";
+      btnIcon.className = "fa-solid fa-spinner fa-spin text-xs";
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        // Reset state & show success toast
+        btnText.textContent = "Message Sent!";
+        btnIcon.className = "fa-solid fa-check text-xs";
+        showToast("Thanks! Your message has been sent successfully.");
+
+        setTimeout(() => {
+          document.getElementById('contact-form').reset();
+          btnText.textContent = "Send Message";
+          btnIcon.className = "fa-solid fa-paper-plane text-xs";
+          submitBtn.disabled = false;
+        }, 2500);
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
