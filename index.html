@@ -178,8 +178,8 @@
       transform: translateY(-4px);
     }
 
-    /* Dedicated Service Card Hover effect with reduced motion support */
-    .service-card {
+    /* Dedicated Card Hover effect with reduced motion support */
+    .service-card, .skill-card {
       background: rgba(10, 16, 10, 0.7);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -189,7 +189,7 @@
                   box-shadow 0.35s ease;
     }
     @media (prefers-reduced-motion: no-preference) {
-      .service-card:hover {
+      .service-card:hover, .skill-card:hover {
         transform: translateY(-6px);
         border-color: rgba(74, 222, 128, 0.55);
         box-shadow: 0 16px 40px -10px rgba(34, 197, 94, 0.32), 0 0 20px rgba(74, 222, 128, 0.2);
@@ -859,329 +859,204 @@
         <h2 class="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl text-white">
           Technical <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Arsenal</span>
         </h2>
-        <p class="text-gray-400 max-w-xl text-sm sm:text-base">
-          Battle-tested frameworks, languages, and architectures I leverage to build reliable software.
+        <p class="text-gray-400 max-w-2xl text-sm sm:text-base leading-relaxed">
+          Tools and technologies I use to build backend systems, real-time apps and ML-powered APIs.
         </p>
         <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
       </div>
 
-      <!-- Grouped Skills Cards -->
+      <!-- 6 Skills Grid (3x2 Desktop, 2-col Tablet, 1-col Mobile) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Category: Languages -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-terminal text-sm"></i>
+        <!-- Card 1: Backend Development (Primary Card with Highlighted Border & Glow) -->
+        <div class="fade-up skill-card p-7 rounded-3xl space-y-5 h-full relative overflow-hidden group border-green-500/40 shadow-[0_0_25px_rgba(74,222,128,0.15)] bg-gradient-to-b from-[#0b160b] to-[#070e07]">
+          <div class="absolute -top-12 -right-12 w-32 h-32 bg-green-500/15 rounded-full blur-2xl group-hover:bg-green-500/25 transition-all pointer-events-none"></div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-2xl bg-green-500/20 border border-green-400/40 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(74,222,128,0.25)]">
+                <i class="fa-solid fa-server text-base"></i>
+              </div>
+              <div>
+                <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">Backend Development</h3>
+                <p class="text-xs text-green-400 font-mono-code">Spring Boot and FastAPI</p>
+              </div>
             </div>
-            <div>
-              <h3 class="font-syne font-bold text-lg text-white">Programming Languages</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Core logic &amp; scripting</p>
-            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono-code bg-green-500/20 text-green-300 border border-green-500/40 uppercase tracking-wider">Primary</span>
           </div>
-          <div class="flex flex-wrap gap-2.5">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 hover:bg-green-500/20 transition-all flex items-center gap-2">
-              <i class="fa-brands fa-java text-sm"></i> Java (17 / 21)
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 hover:bg-green-500/10 transition-all flex items-center gap-2">
-              <i class="fa-brands fa-python text-sm text-yellow-400"></i> Python
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 hover:bg-green-500/10 transition-all flex items-center gap-2">
-              <i class="fa-solid fa-database text-sm text-blue-400"></i> SQL
-            </span>
-          </div>
-        </div>
-
-        <!-- Category: Backend -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-gears text-sm"></i>
-            </div>
-            <div>
-              <h3 class="font-syne font-bold text-lg text-white">Backend Engineering</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Enterprise Java stack</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-2.5">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all">
+          <div class="flex flex-wrap gap-2.5 content-start">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-green-500/20 border border-green-400/50 text-green-300 hover:border-green-300 transition-all">
               Spring Boot
             </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-green-500/20 border border-green-400/50 text-green-300 hover:border-green-300 transition-all">
               Spring MVC
             </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-green-500/20 border border-green-400/50 text-green-300 hover:border-green-300 transition-all">
               Spring Security
             </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Spring REST
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-green-500/20 border border-green-400/50 text-green-300 hover:border-green-300 transition-all">
               Hibernate / JPA
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-green-500/20 border border-green-400/50 text-green-300 hover:border-green-300 transition-all">
+              FastAPI
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-green-500/20 border border-green-400/50 text-green-300 hover:border-green-300 transition-all">
+              REST APIs
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-green-500/20 border border-green-400/50 text-green-300 hover:border-green-300 transition-all">
+              JWT Authentication
             </span>
           </div>
         </div>
 
-        <!-- Category: Real-time & System Design -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+        <!-- Card 2: Languages & DSA -->
+        <div class="fade-up skill-card p-7 rounded-3xl space-y-5 h-full relative overflow-hidden group">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-network-wired text-sm"></i>
+            <div class="w-11 h-11 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-code text-base"></i>
             </div>
             <div>
-              <h3 class="font-syne font-bold text-lg text-white">Real-Time &amp; System Design</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Concurrency &amp; streams</p>
+              <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">Languages &amp; DSA</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Core programming</p>
             </div>
           </div>
-          <div class="flex flex-wrap gap-2.5">
+          <div class="flex flex-wrap gap-2.5 content-start">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all flex items-center gap-1.5">
+              <i class="fa-brands fa-java text-sm"></i> Java
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all flex items-center gap-1.5">
+              <i class="fa-brands fa-python text-sm text-yellow-400"></i> Python
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all flex items-center gap-1.5">
+              <i class="fa-solid fa-database text-sm text-blue-400"></i> SQL
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all">
+              Data Structures &amp; Algorithms
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 3: Real-Time & Architecture -->
+        <div class="fade-up skill-card p-7 rounded-3xl space-y-5 h-full relative overflow-hidden group">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-network-wired text-base"></i>
+            </div>
+            <div>
+              <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">Real-Time &amp; Architecture</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Systems and services</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5 content-start">
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all flex items-center gap-1.5">
               <i class="fa-solid fa-bolt text-xs"></i> WebSockets
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all">
+              Microservices
             </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
               Scalable System Design
             </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Distributed Systems (Basics)
-            </span>
-          </div>
-        </div>
-
-        <!-- Category: Databases -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-server text-sm"></i>
-            </div>
-            <div>
-              <h3 class="font-syne font-bold text-lg text-white">Databases &amp; Storage</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Relational tuning &amp; ACID</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-2.5">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              PostgreSQL
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              MySQL
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
-              Complex Joins &amp; Indexing
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Query Optimization
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Transactions &amp; Locking
-            </span>
-          </div>
-        </div>
-
-        <!-- Category: Core Concepts -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-brain text-sm"></i>
-            </div>
-            <div>
-              <h3 class="font-syne font-bold text-lg text-white">Core Computer Science</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Architectural principles</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-2.5">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
-              Data Structures &amp; Algorithms
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              RESTful API Design
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              JWT Authentication
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              MVC Architecture
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Microservices
-            </span>
-          </div>
-        </div>
-
-        <!-- Category: Frontend & Tools -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-toolbox text-sm"></i>
-            </div>
-            <div>
-              <h3 class="font-syne font-bold text-lg text-white">Frontend &amp; Dev Tools</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Delivery pipeline &amp; UI</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-2.5">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              HTML5 &amp; CSS3
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              JavaScript (ES6+)
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
-              Tailwind CSS
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Git &amp; GitHub
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Maven
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
               Docker
             </span>
           </div>
         </div>
 
-        <!-- Category: Backend (Python) -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+        <!-- Card 4: Databases -->
+        <div class="fade-up skill-card p-7 rounded-3xl space-y-5 h-full relative overflow-hidden group">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-bolt-lightning text-sm"></i>
+            <div class="w-11 h-11 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-database text-base"></i>
             </div>
             <div>
-              <h3 class="font-syne font-bold text-lg text-white">Backend (Python)</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Fast APIs &amp; asynchronous services</p>
+              <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">Databases</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Relational data</p>
             </div>
           </div>
-          <div class="flex flex-wrap gap-2.5">
+          <div class="flex flex-wrap gap-2.5 content-start">
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all">
-              FastAPI
+              PostgreSQL
             </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Pydantic
+              MySQL
             </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Uvicorn
+              Indexing
             </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              REST API development
+              Query Optimization
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              Transactions
             </span>
           </div>
         </div>
 
-        <!-- Category: Machine Learning -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+        <!-- Card 5: Machine Learning & Deep Learning -->
+        <div class="fade-up skill-card p-7 rounded-3xl space-y-5 h-full relative overflow-hidden group">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-chart-line text-sm"></i>
+            <div class="w-11 h-11 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-brain text-base"></i>
             </div>
             <div>
-              <h3 class="font-syne font-bold text-lg text-white">Machine Learning</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Supervised learning &amp; analytics</p>
+              <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">Machine Learning &amp; Deep Learning</h3>
+              <p class="text-xs text-gray-400 font-mono-code">Models and analytics</p>
             </div>
           </div>
-          <div class="flex flex-wrap gap-2.5">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
+          <div class="flex flex-wrap gap-2.5 content-start">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all">
               scikit-learn
             </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
               Pandas
             </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
               NumPy
             </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Matplotlib
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Regression
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Decision Trees
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Random Forest
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              KNN
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              K-Means
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Data Preprocessing
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Model Evaluation
-            </span>
-          </div>
-        </div>
-
-        <!-- Category: Deep Learning -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-microchip text-sm"></i>
-            </div>
-            <div>
-              <h3 class="font-syne font-bold text-lg text-white">Deep Learning</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Neural networks &amp; computer vision</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-2.5">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all">
               TensorFlow
             </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Keras
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
               PyTorch
             </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Neural Networks
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
               CNN
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200">
-              Model Training
             </span>
           </div>
         </div>
 
-        <!-- Category: Microservices & Distributed Architecture -->
-        <div class="fade-up glass-card p-7 rounded-3xl space-y-5">
+        <!-- Card 6: Frontend & Tools -->
+        <div class="fade-up skill-card p-7 rounded-3xl space-y-5 h-full relative overflow-hidden group">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400">
-              <i class="fa-solid fa-cubes text-sm"></i>
+            <div class="w-11 h-11 rounded-2xl bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-toolbox text-base"></i>
             </div>
             <div>
-              <h3 class="font-syne font-bold text-lg text-white">Microservices &amp; Distributed Architecture</h3>
-              <p class="text-xs text-gray-400 font-mono-code">Multi-service backend &amp; scaling</p>
+              <h3 class="font-syne font-bold text-lg text-white group-hover:text-green-300 transition-colors">Frontend &amp; Tools</h3>
+              <p class="text-xs text-gray-400 font-mono-code">UI and workflow</p>
             </div>
           </div>
-          <div class="flex flex-wrap gap-2.5">
+          <div class="flex flex-wrap gap-2.5 content-start">
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              HTML
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              CSS
+            </span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
+              JavaScript
+            </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300 hover:border-green-400 transition-all">
-              Microservices Architecture
+              Tailwind CSS
             </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Java + Python Multi-Service Backend
+              Git
             </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Inter-Service Communication (REST)
+              GitHub
             </span>
             <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Multi-Server Deployment
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              API Gateway (Basics)
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Service Separation
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-green-500/10 border border-green-500/30 text-green-300">
-              Docker Containers
-            </span>
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 text-gray-200 hover:border-green-400/50 transition-all">
-              Scalable System Design
+              Maven
             </span>
           </div>
         </div>
