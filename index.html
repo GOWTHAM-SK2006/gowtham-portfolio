@@ -134,50 +134,77 @@
       }
     }
 
-    /* Touch Glow & Ripple for Mobile/Tablet */
-    #touch-glow {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      background: radial-gradient(circle, rgba(74, 222, 128, 0.45) 0%, rgba(74, 222, 128, 0.18) 45%, transparent 75%);
-      filter: blur(6px);
+    /* 3D Depth & Glare for Cards on Touch Devices */
+    @media (pointer: coarse) {
+      .touch-perspective-parent {
+        perspective: 900px;
+      }
+      .touch-card {
+        transform-style: preserve-3d;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+      }
+      /* Glare pseudo-element */
+      .touch-card::before {
+        content: '';
+        position: absolute;
+        inset: -50%;
+        background: radial-gradient(circle 140px at var(--mx, -200%) var(--my, -200%), rgba(255, 255, 255, 0.22) 0%, rgba(74, 222, 128, 0.16) 40%, transparent 80%);
+        pointer-events: none;
+        opacity: var(--glare-opacity, 0);
+        transition: opacity 0.4s ease;
+        z-index: 20;
+        mix-blend-mode: overlay;
+      }
+      /* Scroll light sweep pseudo-element */
+      .touch-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(115deg, transparent 20%, rgba(74, 222, 128, var(--sweep-strength, 0)) 50%, transparent 80%);
+        pointer-events: none;
+        z-index: 21;
+        opacity: var(--sweep-opacity, 0);
+        transition: opacity 0.35s ease;
+      }
+      /* 3D Content Layers */
+      .touch-card .card-3d-icon {
+        transform: translateZ(30px);
+        transform-style: preserve-3d;
+      }
+      .touch-card .card-3d-title {
+        transform: translateZ(20px);
+        transform-style: preserve-3d;
+      }
+      .touch-card.is-tilting {
+        box-shadow: 0 20px 45px -10px rgba(34, 197, 94, 0.38), 0 0 25px rgba(74, 222, 128, 0.25) !important;
+      }
+    }
+
+    /* Staggered Reveal Animation */
+    .fade-up {
       opacity: 0;
-      transition: opacity 0.4s ease;
-      transform: translate3d(-9999px, -9999px, 0);
-      will-change: transform, opacity;
+      transform: translateY(30px) scale(0.97);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .touch-ripple {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9997;
-      border: 1.5px solid rgba(74, 222, 128, 0.65);
-      background: rgba(74, 222, 128, 0.15);
-      animation: touchRippleAnim 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-      will-change: transform, opacity;
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
-    @keyframes touchRippleAnim {
-      0% {
-        transform: translate3d(var(--tx), var(--ty), 0) translate(-50%, -50%) scale(0.4);
-        opacity: 0.9;
-      }
-      100% {
-        transform: translate3d(var(--tx), var(--ty), 0) translate(-50%, -50%) scale(2.2);
-        opacity: 0;
-      }
-    }
+
     @media (prefers-reduced-motion: reduce) {
-      #touch-glow, .touch-ripple {
+      .touch-card {
+        transform: none !important;
+        transition: none !important;
+      }
+      .touch-card::before, .touch-card::after {
         display: none !important;
+      }
+      .fade-up {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
       }
     }
 
@@ -282,16 +309,13 @@
   <div id="custom-cursor-dot" class="hidden md:block"></div>
   <div id="custom-cursor-ring" class="hidden md:block"></div>
 
-  <!-- Touch Glow Element (Mobile & Tablet) -->
-  <div id="touch-glow"></div>
-
   <!-- Top Scroll Progress Bar -->
   <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-green-500 via-emerald-400 to-lime-300 z-50 transition-all duration-75 w-0"></div>
 
   <!-- Ambient Blurred Radial Blobs (Design System) -->
-  <div class="fixed top-[-100px] left-[-150px] w-[500px] h-[500px] bg-green-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-  <div class="fixed top-[30%] right-[-180px] w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
-  <div class="fixed bottom-[-150px] left-[20%] w-[550px] h-[550px] bg-green-600/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+  <div class="parallax-blob fixed top-[-100px] left-[-150px] w-[500px] h-[500px] bg-green-500/15 rounded-full blur-[140px] pointer-events-none -z-10" data-speed="0.08"></div>
+  <div class="parallax-blob fixed top-[30%] right-[-180px] w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none -z-10" data-speed="-0.06"></div>
+  <div class="parallax-blob fixed bottom-[-150px] left-[20%] w-[550px] h-[550px] bg-green-600/10 rounded-full blur-[150px] pointer-events-none -z-10" data-speed="0.1"></div>
 
   <!-- Background Grid Pattern -->
   <div class="fixed inset-0 bg-grid-pattern pointer-events-none -z-20"></div>
@@ -745,7 +769,7 @@
       </div>
 
       <!-- 6 Services Grid (3x2 Desktop, 2-col Tablet, 1-col Mobile) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 touch-perspective-parent">
         
         <!-- Service 01 -->
         <div class="fade-up service-card p-7 sm:p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-between h-full">
@@ -923,7 +947,7 @@
       </div>
 
       <!-- 6 Skills Grid (3x2 Desktop, 2-col Tablet, 1-col Mobile) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 touch-perspective-parent">
 
         <!-- Card 1: Backend Development (Primary Card with Highlighted Border & Glow) -->
         <div class="fade-up skill-card p-7 rounded-3xl space-y-5 h-full relative overflow-hidden group border-green-500/40 shadow-[0_0_25px_rgba(74,222,128,0.15)] bg-gradient-to-b from-[#0b160b] to-[#070e07]">
@@ -1160,7 +1184,7 @@
       </div>
 
       <!-- Projects Stack List -->
-      <div class="space-y-12">
+      <div class="space-y-12 touch-perspective-parent">
 
         <!-- Project 1: CodeClash -->
         <div class="fade-up glass-card rounded-3xl p-8 sm:p-10 border border-green-500/25 relative overflow-hidden group">
@@ -1564,7 +1588,7 @@
       </div>
 
       <!-- Education Timeline -->
-      <div class="relative border-l-2 border-green-500/30 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-12">
+      <div class="relative border-l-2 border-green-500/30 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-12 touch-perspective-parent">
         
         <!-- Degree -->
         <div class="fade-up relative group">
@@ -2082,61 +2106,139 @@
           document.body.classList.remove('cursor-hover');
         });
       });
-    } else if (touchGlow && !prefersReducedMotion) {
-      let touchX = 0;
-      let touchY = 0;
-      let isTicking = false;
+    } else if (isTouchDevice && !prefersReducedMotion) {
+      // Premium 3D Touch Tilt, Glare Sweep, Scroll Depth & Dynamic Parallax
+      const targetCards = document.querySelectorAll('#services .service-card, #skills .skill-card, #projects .glass-card, #education .glass-card');
+      
+      targetCards.forEach(card => {
+        card.classList.add('touch-card');
 
-      function updateGlowPosition() {
-        touchGlow.style.transform = `translate3d(${touchX - 45}px, ${touchY - 45}px, 0)`;
-        isTicking = false;
-      }
-
-      function requestGlowUpdate() {
-        if (!isTicking) {
-          requestAnimationFrame(updateGlowPosition);
-          isTicking = true;
+        // Apply depth layers to icons and titles inside cards
+        const iconEl = card.querySelector('i')?.parentElement;
+        if (iconEl && !iconEl.classList.contains('card-3d-icon')) {
+          iconEl.classList.add('card-3d-icon');
         }
-      }
+        const titleEl = card.querySelector('h3, h4');
+        if (titleEl && !titleEl.classList.contains('card-3d-title')) {
+          titleEl.classList.add('card-3d-title');
+        }
 
-      // Touch Start
-      window.addEventListener('touchstart', (e) => {
-        if (e.touches && e.touches[0]) {
-          touchX = e.touches[0].clientX;
-          touchY = e.touches[0].clientY;
-          updateGlowPosition();
-          touchGlow.style.opacity = '1';
+        let touchActive = false;
+        let cardRect = null;
 
-          // Create expanding soft ripple ring
-          const ripple = document.createElement('div');
-          ripple.className = 'touch-ripple';
-          ripple.style.setProperty('--tx', `${touchX}px`);
-          ripple.style.setProperty('--ty', `${touchY}px`);
-          document.body.appendChild(ripple);
+        card.addEventListener('touchstart', (e) => {
+          if (!e.touches || !e.touches[0]) return;
+          touchActive = true;
+          card.style.willChange = 'transform';
+          cardRect = card.getBoundingClientRect();
+          card.classList.add('is-tilting');
 
+          const touch = e.touches[0];
+          const px = touch.clientX - cardRect.left;
+          const py = touch.clientY - cardRect.top;
+          
+          card.style.setProperty('--mx', `${px}px`);
+          card.style.setProperty('--my', `${py}px`);
+          card.style.setProperty('--glare-opacity', '0.65');
+
+          const rotX = -((py / cardRect.height) - 0.5) * 16;
+          const rotY = ((px / cardRect.width) - 0.5) * 16;
+          const clampRotX = Math.max(-8, Math.min(8, rotX));
+          const clampRotY = Math.max(-8, Math.min(8, rotY));
+
+          card.style.transform = `perspective(900px) rotateX(${clampRotX.toFixed(2)}deg) rotateY(${clampRotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+        }, { passive: true });
+
+        card.addEventListener('touchmove', (e) => {
+          if (!touchActive || !e.touches || !e.touches[0]) return;
+          if (!cardRect) cardRect = card.getBoundingClientRect();
+
+          const touch = e.touches[0];
+          const px = touch.clientX - cardRect.left;
+          const py = touch.clientY - cardRect.top;
+
+          requestAnimationFrame(() => {
+            if (!touchActive) return;
+            card.style.setProperty('--mx', `${px}px`);
+            card.style.setProperty('--my', `${py}px`);
+
+            const rotX = -((py / cardRect.height) - 0.5) * 16;
+            const rotY = ((px / cardRect.width) - 0.5) * 16;
+            const clampRotX = Math.max(-8, Math.min(8, rotX));
+            const clampRotY = Math.max(-8, Math.min(8, rotY));
+
+            card.style.transform = `perspective(900px) rotateX(${clampRotX.toFixed(2)}deg) rotateY(${clampRotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+          });
+        }, { passive: true });
+
+        const resetCardTilt = () => {
+          touchActive = false;
+          card.classList.remove('is-tilting');
+          card.style.setProperty('--glare-opacity', '0');
+          card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
           setTimeout(() => {
-            if (ripple && ripple.parentNode) {
-              ripple.parentNode.removeChild(ripple);
+            if (!touchActive) {
+              card.style.willChange = 'auto';
             }
-          }, 600);
-        }
-      }, { passive: true });
+          }, 500);
+        };
 
-      // Touch Move
-      window.addEventListener('touchmove', (e) => {
-        if (e.touches && e.touches[0]) {
-          touchX = e.touches[0].clientX;
-          touchY = e.touches[0].clientY;
-          requestGlowUpdate();
-        }
-      }, { passive: true });
+        card.addEventListener('touchend', resetCardTilt, { passive: true });
+        card.addEventListener('touchcancel', resetCardTilt, { passive: true });
+      });
 
-      // Touch End & Cancel
-      const fadeOutTouchGlow = () => {
-        touchGlow.style.opacity = '0';
-      };
-      window.addEventListener('touchend', fadeOutTouchGlow, { passive: true });
-      window.addEventListener('touchcancel', fadeOutTouchGlow, { passive: true });
+      // Scroll Velocity: Scroll Shine & Subtle Scroll Depth Tilt
+      let lastScrollY = window.pageYOffset;
+      let lastScrollTime = performance.now();
+      let scrollVelocity = 0;
+      let scrollTimer = null;
+      const heroPhoto = document.querySelector('.hero-photo-wrapper');
+      const blobs = document.querySelectorAll('.parallax-blob');
+
+      window.addEventListener('scroll', () => {
+        const now = performance.now();
+        const currentScrollY = window.pageYOffset;
+        const dt = Math.max(now - lastScrollTime, 1);
+        const dy = currentScrollY - lastScrollY;
+        scrollVelocity = dy / dt; // px per ms
+
+        lastScrollY = currentScrollY;
+        lastScrollTime = now;
+
+        const absVel = Math.min(Math.abs(scrollVelocity), 3.5);
+        const normalizedVel = absVel / 3.5; // 0 to 1
+        const scrollTilt = Math.max(-4, Math.min(4, -scrollVelocity * 2.2));
+
+        // Parallax for Background Blobs & Hero Photo
+        blobs.forEach(blob => {
+          const speed = parseFloat(blob.getAttribute('data-speed')) || 0.05;
+          blob.style.transform = `translate3d(0, ${(currentScrollY * speed).toFixed(1)}px, 0)`;
+        });
+        if (heroPhoto && currentScrollY < window.innerHeight) {
+          heroPhoto.style.transform = `translate3d(0, ${(currentScrollY * 0.08).toFixed(1)}px, 0)`;
+        }
+
+        // Apply dynamic scroll shine and subtle velocity tilt to visible cards
+        targetCards.forEach(card => {
+          if (!card.classList.contains('is-tilting')) {
+            card.style.setProperty('--sweep-strength', (normalizedVel * 0.28).toFixed(2));
+            card.style.setProperty('--sweep-opacity', (normalizedVel > 0.05 ? '0.75' : '0'));
+            if (absVel > 0.6) {
+              card.style.transform = `perspective(900px) rotateX(${scrollTilt.toFixed(2)}deg)`;
+            }
+          }
+        });
+
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          targetCards.forEach(card => {
+            if (!card.classList.contains('is-tilting')) {
+              card.style.setProperty('--sweep-opacity', '0');
+              card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+            }
+          });
+        }, 120);
+      }, { passive: true });
     }
 
     // 3. Scroll Progress Indicator
@@ -2201,18 +2303,35 @@
       });
     });
 
-    // 6. Intersection Observer for Fade-Up Animations
+    // 6. Intersection Observer for Fade-Up Animations (Staggered by 80ms)
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.12
+      threshold: 0.1
     };
+
+    let staggerQueue = [];
+    let staggerTimeout = null;
+
+    function processStaggerQueue() {
+      if (staggerQueue.length === 0) return;
+      const el = staggerQueue.shift();
+      el.classList.add('visible');
+      if (staggerQueue.length > 0) {
+        staggerTimeout = setTimeout(processStaggerQueue, 80);
+      } else {
+        staggerTimeout = null;
+      }
+    }
 
     const fadeObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          staggerQueue.push(entry.target);
           observer.unobserve(entry.target);
+          if (!staggerTimeout) {
+            processStaggerQueue();
+          }
         }
       });
     }, observerOptions);
